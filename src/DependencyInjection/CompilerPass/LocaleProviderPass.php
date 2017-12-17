@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\DependencyInjection\Compiler;
+namespace Koff\Bundle\I18nFormBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -29,13 +29,18 @@ class LocaleProviderPass implements CompilerPassInterface
             return;
         }
 
-        $container->setAlias('a2lix_translation_form.default.service.locale_provider', 'a2lix_translation_form.default.service.parameter_locale_provider');
+        $container->setAlias(
+            'a2lix_translation_form.default.service.locale_provider',
+            'a2lix_translation_form.default.service.parameter_locale_provider'
+        );
 
         $definition = $container->getDefinition('a2lix_translation_form.default.service.parameter_locale_provider');
-        $definition->setArguments([
-            $container->getParameter('a2lix_translation_form.locales'),
-            $container->getParameter('a2lix_translation_form.default_locale'),
-            $container->getParameter('a2lix_translation_form.required_locales'),
-        ]);
+        $definition->setArguments(
+            [
+                $container->getParameter('a2lix_translation_form.locales'),
+                $container->getParameter('a2lix_translation_form.default_locale'),
+                $container->getParameter('a2lix_translation_form.required_locales'),
+            ]
+        );
     }
 }

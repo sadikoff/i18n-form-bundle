@@ -1,9 +1,9 @@
 {
-    "name": "sadikoff/i18n-form-bundle",
+    "name": "koff/i18n-form-bundle",
     "type": "symfony-bundle",
     "description": "Translate your doctrine objects easily with some helps",
     "keywords": ["symfony2", "doctrine2", "i18n", "internationalization", "translation", "translatable", "form", "knplabs"],
-    "homepage": "https://github.com/a2lix/TranslationFormBundle",
+    "homepage": "https://github.com/sadikoff/i18n-form-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -17,16 +17,15 @@
     ],
     "require": {
         "php": "^7.0.8",
-        "symfony/form": "^3.4|^4.0",
-        "symfony/dependency-injection": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0",
         "symfony/config": "^3.4|^4.0",
-        "symfony/doctrine-bridge": "^3.4|^4.0",
-        "a2lix/auto-form-bundle": "@dev"
+        "symfony/dependency-injection": "^3.4|^4.0",
+        "symfony/form": "^3.4|^4.0",
+        "symfony/http-kernel": "^3.4|^4.0",
+        "symfony/doctrine-bridge": "^3.4|^4.0"
     },
     "require-dev": {
         "symfony/validator": "^3.4|^4.0",
-        "phpunit/phpunit": "~4.1",
+        "symfony/phpunit-bridge": "^3.4|^4.0",
         "friendsofphp/php-cs-fixer": "^2.8",
         "doctrine/orm": "~2.4"
     },
@@ -34,6 +33,12 @@
         "knplabs/doctrine-behaviors": "For Knp strategy",
         "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
         "prezent/doctrine-translatable-bundle": "For Prezent strategy"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": { "Koff\\Bundle\\I18nFormBundle\\": "src/" }
@@ -43,7 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "4.x-dev"
         }
     }
 }

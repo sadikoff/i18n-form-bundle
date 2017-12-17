@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Form\Type;
+namespace Koff\Bundle\I18nFormBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -46,7 +46,7 @@ class TranslatedEntityType extends AbstractType
             },
             'property' => function (Options $options) {
                 if (null === ($request = $this->requestStack->getCurrentRequest())) {
-                    throw new \RuntimeExceptionn('Error while getting request');
+                    throw new \RuntimeException('Error while getting request');
                 }
 
                 return $options['translation_path'] . '[' . $request->getLocale() . '].' . $options['translation_property'];

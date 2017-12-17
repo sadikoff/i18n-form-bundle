@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Form\Type;
+namespace Koff\Bundle\I18nFormBundle\Form\Type;
 
-use A2lix\TranslationFormBundle\Form\EventListener\TranslationsListener;
-use A2lix\TranslationFormBundle\Locale\LocaleProviderInterface;
+use Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsListener;
+use Koff\Bundle\I18nFormBundle\Locale\LocaleProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;

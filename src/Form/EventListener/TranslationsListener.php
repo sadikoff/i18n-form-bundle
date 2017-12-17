@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Form\EventListener;
+namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
 use A2lix\AutoFormBundle\Form\Manipulator\FormManipulatorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

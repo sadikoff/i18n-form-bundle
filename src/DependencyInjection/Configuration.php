@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\DependencyInjection;
+namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

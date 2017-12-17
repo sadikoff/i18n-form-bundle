@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\DependencyInjection\Compiler;
+namespace Koff\Bundle\I18nFormBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
