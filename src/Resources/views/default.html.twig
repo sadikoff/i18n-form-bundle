@@ -1,4 +1,4 @@
-{% block a2lix_translations_widget %}
+{% block koff_i18n_widget %}
     {{ form_errors(form) }}
     <div class="a2lix_translations tabbable">
         <ul class="a2lix_translationsLocales nav nav-tabs">
@@ -28,6 +28,6 @@
     </div>
 {% endblock %}
 
-{% block a2lix_translationsForms_widget %}
-    {{ block('a2lix_translations_widget') }}
+{% block koff_i18n_forms_widget %}
+    {{ block('koff_i18n_widget') }}
 {% endblock %}

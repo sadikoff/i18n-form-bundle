@@ -90,6 +90,6 @@ class TranslationsFormsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'a2lix_translationsForms';
+        return 'koff_i18n_forms';
     }
 }

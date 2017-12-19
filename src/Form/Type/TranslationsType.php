@@ -83,6 +83,6 @@ class TranslationsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'a2lix_translations';
+        return 'koff_i18n';
     }
 }
