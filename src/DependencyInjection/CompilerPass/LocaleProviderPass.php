@@ -21,25 +21,25 @@ class LocaleProviderPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $localeProvider = $container->getParameter('a2lix_translation_form.locale_provider');
+        $localeProvider = $container->getParameter('koff_i18n_form.locale_provider');
 
         if ('default' !== $localeProvider) {
-            $container->setAlias('a2lix_translation_form.default.service.locale_provider', $localeProvider);
+            $container->setAlias('koff_i18n_form.default.service.locale_provider', $localeProvider);
 
             return;
         }
 
         $container->setAlias(
-            'a2lix_translation_form.default.service.locale_provider',
-            'a2lix_translation_form.default.service.parameter_locale_provider'
+            'koff_i18n_form.default.service.locale_provider',
+            'koff_i18n_form.default.service.parameter_locale_provider'
         );
 
-        $definition = $container->getDefinition('a2lix_translation_form.default.service.parameter_locale_provider');
+        $definition = $container->getDefinition('koff_i18n_form.default.service.parameter_locale_provider');
         $definition->setArguments(
             [
-                $container->getParameter('a2lix_translation_form.locales'),
-                $container->getParameter('a2lix_translation_form.default_locale'),
-                $container->getParameter('a2lix_translation_form.required_locales'),
+                $container->getParameter('koff_i18n_form.locales'),
+                $container->getParameter('koff_i18n_form.default_locale'),
+                $container->getParameter('koff_i18n_form.required_locales'),
             ]
         );
     }

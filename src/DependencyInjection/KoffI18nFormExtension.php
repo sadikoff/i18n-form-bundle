@@ -32,11 +32,11 @@ class KoffI18nFormExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('a2lix_form.xml');
 
-        $container->setParameter('a2lix_translation_form.locale_provider', $config['locale_provider']);
-        $container->setParameter('a2lix_translation_form.locales', $config['locales']);
-        $container->setParameter('a2lix_translation_form.required_locales', $config['required_locales']);
-        $container->setParameter('a2lix_translation_form.default_locale', $config['default_locale'] ?: $container->getParameter('kernel.default_locale', 'en'));
+        $container->setParameter('koff_i18n_form.locale_provider', $config['locale_provider']);
+        $container->setParameter('koff_i18n_form.locales', $config['locales']);
+        $container->setParameter('koff_i18n_form.required_locales', $config['required_locales']);
+        $container->setParameter('koff_i18n_form.default_locale', $config['default_locale'] ?: $container->getParameter('kernel.default_locale', 'en'));
 
-        $container->setParameter('a2lix_translation_form.templating', $config['templating']);
+        $container->setParameter('koff_i18n_form.templating', $config['templating']);
     }
 }
