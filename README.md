@@ -29,48 +29,48 @@ Configuration
 -------------
 Full configuration example
 
-    ```yaml
-    # config/packages/koff_i18n_form.yaml
-    koff_i18n_form:
-        locale_provider: default
-        locales: [en, fr, es, de]
-        default_locale: en
-        required_locales: [fr]
-    ```
+```yaml
+# config/packages/koff_i18n_form.yaml
+koff_i18n_form:
+    locale_provider: default
+    locales: [en, fr, es, de]
+    default_locale: en
+    required_locales: [fr]
+```
 
 Usage
 -----
 
 Basic example
 
-    ```php
-    use Koff\I18nFormBundle\Form\Type\TranslationsType;
-    ...
-    $builder->add('translations', TranslationsType::class);
-    ```
+```php
+use Koff\I18nFormBundle\Form\Type\TranslationsType;
+//...
+$builder->add('translations', TranslationsType::class);
+```
 
 Advanced example
 
-    ```php
-    use Koff\I18nFormBundle\Form\Type\TranslationsType;
-    ...
-    $builder->add('translations', TranslationsType::class, [
-        'locales' => ['en', 'fr', 'es', 'de'],          // [1]
-        'default_locale' => ['en']                      // [1]
-        'required_locales' => ['fr'],                   // [1]
-        'fields' => [                                   // [2]
-            'description' => [                          // [3.a]
-                'field_type' => 'textarea',             // [4]
-                'label' => 'descript.',                 // [4]
-                'locale_options' => [                   // [3.b]
-                    'es' => ['label' => 'descripción']  // [4]
-                    'fr' => ['display' => false]        // [4]
-                ]
+```php
+use Koff\I18nFormBundle\Form\Type\TranslationsType;
+//...
+$builder->add('translations', TranslationsType::class, [
+    'locales' => ['en', 'fr', 'es', 'de'],          // [1]
+    'default_locale' => ['en']                      // [1]
+    'required_locales' => ['fr'],                   // [1]
+    'fields' => [                                   // [2]
+        'description' => [                          // [3.a]
+            'field_type' => 'textarea',             // [4]
+            'label' => 'descript.',                 // [4]
+            'locale_options' => [                   // [3.b]
+                'es' => ['label' => 'descripción']  // [4]
+                'fr' => ['display' => false]        // [4]
             ]
-        ],
-        'excluded_fields' => ['details']                // [2]
-    ]);
-    ```
+        ]
+    ],
+    'excluded_fields' => ['details']                // [2]
+]);
+```
 
 * [1] Optionnal. If set, override the default value from config.yml
 * [2] Optionnal. If set, override the default value from config.yml
@@ -86,19 +86,19 @@ Additional
 ###TranslationsFormsType
 A different approach for entities which don't share fields untranslated. No strategy used here, only a locale field in your entity.
 
-    ```php
-    use Koff\I18nFormBundle\Form\Type\TranslationsFormsType;
-    ...
-    $builder->add('translations', TranslationsFormsType::class, [
-        'locales' => ['en', 'fr', 'es', 'de'],   // [1]
-        'default_locale' => ['en']               // [1]
-        'required_locales' => ['fr'],            // [1]
-        'form_type' => ProductMediaType::class,  // [2 - Mandatory]
-        'form_options' => [                      // [2bis]
-             'context' => 'pdf'
-        ]
-    ]);
-    ```
+```php
+use Koff\I18nFormBundle\Form\Type\TranslationsFormsType;
+//...
+$builder->add('translations', TranslationsFormsType::class, [
+    'locales' => ['en', 'fr', 'es', 'de'],   // [1]
+    'default_locale' => ['en']               // [1]
+    'required_locales' => ['fr'],            // [1]
+    'form_type' => ProductMediaType::class,  // [2 - Mandatory]
+    'form_options' => [                      // [2bis]
+        'context' => 'pdf'
+    ]
+]);
+```
 
 * [1] Optionnal. If set, override the default value from config.yml
 * [2 - Mandatory]. A real form type that you have to do
@@ -107,15 +107,15 @@ A different approach for entities which don't share fields untranslated. No stra
 ###TranslatedEntityType
 Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations
 
-    ```php
-    use Koff\I18nFormBundle\Form\Type\TranslatedEntityType;
-    ...
-    $builder->add('medias', TranslatedEntityType::class, [
-        'class' => 'App\Entity\Media',      // [1 - Mandatory]
-        'translation_property' => 'text',   // [2 - Mandatory]
-        'multiple' => true,                 // [3]
-    ));
-    ```
+```php
+use Koff\I18nFormBundle\Form\Type\TranslatedEntityType;
+//...
+$builder->add('medias', TranslatedEntityType::class, [
+    'class' => 'App\Entity\Media',      // [1 - Mandatory]
+    'translation_property' => 'text',   // [2 - Mandatory]
+    'multiple' => true,                 // [3]
+]);
+```
     
 * [1] Path of the translatable class
 * [2] Property/Method of the translatable class that will be display
