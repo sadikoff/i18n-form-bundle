@@ -12,6 +12,7 @@
 namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
 use Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
+use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -54,7 +55,7 @@ class TranslationsListener implements EventSubscriberInterface
 
         foreach ($formOptions['locales'] as $locale) {
             if (isset($fieldsOptions[$locale])) {
-                $form->add($locale, 'A2lix\AutoFormBundle\Form\Type\AutoFormType', [
+                $form->add($locale, AutoFormType::class, [
                     'data_class' => $translationClass,
                     'required' => in_array($locale, $formOptions['required_locales'], true),
                     'block_name' => ('field' === $formOptions['theming_granularity']) ? 'locale' : null,
