@@ -11,7 +11,7 @@
 
 namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
-use A2lix\AutoFormBundle\Form\Manipulator\FormManipulatorInterface;
+use Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
