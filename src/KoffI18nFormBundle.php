@@ -7,8 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class KoffI18nFormBundle
- * @package Koff\Bundle\I18nFormBundle
+ * Class KoffI18nFormBundle.
  */
 class KoffI18nFormBundle extends Bundle
 {

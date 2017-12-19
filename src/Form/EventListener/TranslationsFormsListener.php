@@ -23,7 +23,7 @@ class TranslationsFormsListener extends KoffI18nListener
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT       => 'submit',
+            FormEvents::SUBMIT => 'submit',
         ];
     }
 

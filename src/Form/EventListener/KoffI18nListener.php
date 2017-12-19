@@ -15,7 +15,7 @@ abstract class KoffI18nListener implements EventSubscriberInterface
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT       => 'submit',
+            FormEvents::SUBMIT => 'submit',
         ];
     }
 

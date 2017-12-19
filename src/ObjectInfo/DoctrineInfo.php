@@ -65,20 +65,20 @@ class DoctrineInfo implements ObjectInfoInterface
                 $assocsConfigs[$assocName] = [
                     'field_type' => AutoFormType::class,
                     'data_class' => $class,
-                    'required'   => !$nullable,
+                    'required' => !$nullable,
                 ];
 
                 continue;
             }
 
             $assocsConfigs[$assocName] = [
-                'field_type'    => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-                'entry_type'    => AutoFormType::class,
+                'field_type' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+                'entry_type' => AutoFormType::class,
                 'entry_options' => [
                     'data_class' => $class,
                 ],
-                'allow_add'     => true,
-                'by_reference'  => false,
+                'allow_add' => true,
+                'by_reference' => false,
             ];
         }
 

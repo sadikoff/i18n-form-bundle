@@ -86,7 +86,7 @@ class TranslationsListener extends KoffI18nListener
             return $translatableClass::getTranslationClass();
         }
 
-        return $translatableClass . 'Translation';
+        return $translatableClass.'Translation';
     }
 
     /**

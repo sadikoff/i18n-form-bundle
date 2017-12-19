@@ -29,7 +29,7 @@ class KoffI18nFormExtension extends Extension
         $processor = new Processor();
         $config = $processor->processConfiguration(new Configuration(), $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('a2lix_form.xml');
 
         $container->setParameter('koff_i18n_form.locale_provider', $config['locale_provider']);
