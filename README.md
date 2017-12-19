@@ -1,5 +1,5 @@
 KoffI18nFormBundle
-==========================
+==================
 
 [![Build Status](https://travis-ci.org/sadikoff/i18n-form-bundle.svg?branch=master)](https://travis-ci.org/sadikoff/i18n-form-bundle)
 [![Latest Stable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/stable.svg)](https://packagist.org/packages/koff/i18n-form-bundle) 
@@ -8,6 +8,7 @@ KoffI18nFormBundle
 [![License](https://poser.pugx.org/koff/i18n-form-bundle/license.svg)](https://packagist.org/packages/koff/i18n-form-bundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/?branch=master)
 
-### Documentation
+Documentation
+-------------
 
 ... in development
