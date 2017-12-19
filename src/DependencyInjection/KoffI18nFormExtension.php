@@ -38,5 +38,8 @@ class KoffI18nFormExtension extends Extension
         $container->setParameter('koff_i18n_form.default_locale', $config['default_locale'] ?: $container->getParameter('kernel.default_locale', 'en'));
 
         $container->setParameter('koff_i18n_form.templating', $config['templating']);
+
+        $defaultManipulator = $container->getDefinition('koff_i18n_form.default.manipulator');
+        $defaultManipulator->replaceArgument(1, $config['excluded_fields']);
     }
 }
