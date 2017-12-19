@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Tests\Fixtures\Form;
+namespace Koff\Bundle\I18nFormBundle\Tests\Fixtures\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +28,7 @@ class MediaLocalizeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'A2lix\TranslationFormBundle\Tests\Fixtures\Entity\MediaLocalize',
+            'data_class' => 'Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\MediaLocalize',
         ]);
     }
 }

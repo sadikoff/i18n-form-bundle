@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Tests\Form\Type;
+namespace Koff\Bundle\I18nFormBundle\Tests\Form\Type;
 
-use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
-use A2lix\TranslationFormBundle\Tests\Fixtures\Entity\Product;
-use A2lix\TranslationFormBundle\Tests\Fixtures\Entity\ProductTranslation;
-use A2lix\TranslationFormBundle\Tests\Form\TypeTestCase;
+use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
+use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\Product;
+use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\ProductTranslation;
+use Koff\Bundle\I18nFormBundle\Tests\Form\TypeTestCase;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\PreloadedExtension;

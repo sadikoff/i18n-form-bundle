@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Tests\Form;
+namespace Koff\Bundle\I18nFormBundle\Tests\Form;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -21,14 +21,14 @@ use Symfony\Component\Validator\ConstraintViolationList;
 
 abstract class TypeTestCase extends BaseTypeTestCase
 {
-    /** @var DefaultManipulator */
+    /** @var \Koff\Bundle\I18nFormBundle\Form\Manipulator\DefaultManipulator */
     protected $defaultFormManipulator;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $validator = $this->getMock('\Symfony\Component\Validator\Validator\ValidatorInterface');
+        $validator = $this->createMock('\Symfony\Component\Validator\Validator\ValidatorInterface');
         $validator->method('validate')->will($this->returnValue(new ConstraintViolationList()));
 
         $this->factory = Forms::createFormFactoryBuilder()
@@ -43,7 +43,7 @@ abstract class TypeTestCase extends BaseTypeTestCase
             )
             ->getFormFactory();
 
-        $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->builder = new FormBuilder(null, null, $this->dispatcher, $this->factory);
     }
 
@@ -55,31 +55,31 @@ abstract class TypeTestCase extends BaseTypeTestCase
 
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . '/../Fixtures/Entity'], true, null, null, false);
         $entityManager = EntityManager::create(['driver' => 'pdo_sqlite'], $config);
-        $doctrineInfo = new \A2lix\AutoFormBundle\ObjectInfo\DoctrineInfo($entityManager->getMetadataFactory());
+        $doctrineInfo = new \Koff\Bundle\I18nFormBundle\ObjectInfo\DoctrineInfo($entityManager->getMetadataFactory());
 
-        return $this->defaultFormManipulator = new \A2lix\AutoFormBundle\Form\Manipulator\DefaultManipulator($doctrineInfo, ['id', 'locale', 'translatable']);
+        return $this->defaultFormManipulator = new \Koff\Bundle\I18nFormBundle\Form\Manipulator\DefaultManipulator($doctrineInfo, ['id', 'locale', 'translatable']);
     }
 
     protected function getConfiguredAutoFormType()
     {
-        $AutoFormListener = new \A2lix\AutoFormBundle\Form\EventListener\AutoFormListener($this->getDefaultFormManipulator());
+        $AutoFormListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\AutoFormListener($this->getDefaultFormManipulator());
 
-        return new \A2lix\AutoFormBundle\Form\Type\AutoFormType($AutoFormListener);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType($AutoFormListener);
     }
 
     protected function getConfiguredTranslationsType($locales, $defaultLocale, $requiredLocales)
     {
-        $translationsListener = new \A2lix\TranslationFormBundle\Form\EventListener\TranslationsListener($this->getDefaultFormManipulator());
-        $localProvider = new \A2lix\TranslationFormBundle\Locale\DefaultProvider($locales, $defaultLocale, $requiredLocales);
+        $translationsListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsListener($this->getDefaultFormManipulator());
+        $localProvider = new \Koff\Bundle\I18nFormBundle\Locale\DefaultProvider($locales, $defaultLocale, $requiredLocales);
 
-        return new \A2lix\TranslationFormBundle\Form\Type\TranslationsType($translationsListener, $localProvider);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType($translationsListener, $localProvider);
     }
 
     protected function getConfiguredTranslationsFormsType($locales, $defaultLocale, $requiredLocales)
     {
-        $translationsFormsListener = new \A2lix\TranslationFormBundle\Form\EventListener\TranslationsFormsListener($this->getDefaultFormManipulator());
-        $localProvider = new \A2lix\TranslationFormBundle\Locale\DefaultProvider($locales, $defaultLocale, $requiredLocales);
+        $translationsFormsListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsFormsListener();
+        $localProvider = new \Koff\Bundle\I18nFormBundle\Locale\DefaultProvider($locales, $defaultLocale, $requiredLocales);
 
-        return new \A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType($translationsFormsListener, $localProvider);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType($translationsFormsListener, $localProvider);
     }
 }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace A2lix\TranslationFormBundle\Tests\Fixtures\Entity;
+namespace Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
