@@ -7,7 +7,7 @@ $(function() {
             .siblings().removeClass('active');
     });
 
-    $('div.a2lix_translationsLocalesSelector').on('change', 'input', function(evt) {
+    $('div.a2lix_translationsLocalesSelector').on('change', 'input', function() {
         var $tabs = $('ul.a2lix_translationsLocales');
 
         $('div.a2lix_translationsLocalesSelector').find('input').each(function() {

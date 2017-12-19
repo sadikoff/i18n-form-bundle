@@ -4,7 +4,7 @@ $(function() {
         $(this).tab('show');
     });
 
-    $('div.a2lix_translationsLocalesSelector').on('change', 'input', function(evt) {
+    $('div.a2lix_translationsLocalesSelector').on('change', 'input', function() {
         var $tabs = $('ul.a2lix_translationsLocales');
 
         $('div.a2lix_translationsLocalesSelector').find('input').each(function() {
@@ -15,7 +15,7 @@ $(function() {
     }).trigger('change');
 
     // Manage focus on right bootstrap tab when invalid event (A2lixTranslation tab or not, and inner tabs include)
-    $(':input', 'div.tab-content').on('invalid', function(e) {
+    $(':input', 'div.tab-content').on('invalid', function() {
         var $tabPanes = $(this).parents('div.tab-pane');
 
         $tabPanes.each(function() {

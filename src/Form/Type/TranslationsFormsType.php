@@ -65,7 +65,7 @@ class TranslationsFormsType extends AbstractType
     {
         $resolver->setDefaults([
             'by_reference' => false,
-            'empty_data' => function (FormInterface $form) {
+            'empty_data' => function () {
                 return new \Doctrine\Common\Collections\ArrayCollection();
             },
             'locales' => $this->localeProvider->getLocales(),

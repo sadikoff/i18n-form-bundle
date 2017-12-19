@@ -11,11 +11,10 @@
 
 namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class TranslationsFormsListener implements EventSubscriberInterface
+class TranslationsFormsListener extends KoffI18nListener
 {
     /**
      * {@inheritdoc}
@@ -24,7 +23,7 @@ class TranslationsFormsListener implements EventSubscriberInterface
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT => 'submit',
+            FormEvents::SUBMIT       => 'submit',
         ];
     }
 
@@ -37,28 +36,13 @@ class TranslationsFormsListener implements EventSubscriberInterface
         $formOptions = $form->getConfig()->getOptions();
 
         foreach ($formOptions['locales'] as $locale) {
-            $form->add($locale, $formOptions['form_type'],
+            $form->add(
+                $locale,
+                $formOptions['form_type'],
                 $formOptions['form_options'] + [
                     'required' => in_array($locale, $formOptions['required_locales'], true),
                 ]
             );
-        }
-    }
-
-    /**
-     * @param FormEvent $event
-     */
-    public function submit(FormEvent $event)
-    {
-        $data = $event->getData();
-
-        foreach ($data as $locale => $translation) {
-            // Remove useless Translation object
-            if (!$translation) {
-                $data->removeElement($translation);
-            } else {
-                $translation->setLocale($locale);
-            }
         }
     }
 }

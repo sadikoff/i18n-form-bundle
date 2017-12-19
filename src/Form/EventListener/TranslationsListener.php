@@ -13,12 +13,11 @@ namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
 use Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 
-class TranslationsListener implements EventSubscriberInterface
+class TranslationsListener extends KoffI18nListener
 {
     /** @var FormManipulatorInterface */
     private $formManipulator;
@@ -62,23 +61,6 @@ class TranslationsListener implements EventSubscriberInterface
                     'fields' => $fieldsOptions[$locale],
                     'excluded_fields' => $formOptions['excluded_fields'],
                 ]);
-            }
-        }
-    }
-
-    /**
-     * @param FormEvent $event
-     */
-    public function submit(FormEvent $event)
-    {
-        $data = $event->getData();
-
-        foreach ($data as $locale => $translation) {
-            // Remove useless Translation object
-            if (!$translation) {
-                $data->removeElement($translation);
-            } else {
-                $translation->setLocale($locale);
             }
         }
     }

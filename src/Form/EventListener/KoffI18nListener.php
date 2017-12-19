@@ -1,0 +1,43 @@
+<?php
+
+namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
+abstract class KoffI18nListener implements EventSubscriberInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            FormEvents::PRE_SET_DATA => 'preSetData',
+            FormEvents::SUBMIT       => 'submit',
+        ];
+    }
+
+    /**
+     * @param FormEvent $event
+     */
+    abstract public function preSetData(FormEvent $event);
+
+    /**
+     * @param FormEvent $event
+     */
+    public function submit(FormEvent $event)
+    {
+        $data = $event->getData();
+
+        foreach ($data as $locale => $translation) {
+            // Remove useless Translation object
+            if (!$translation) {
+                $data->removeElement($translation);
+            } else {
+                $translation->setLocale($locale);
+            }
+        }
+    }
+}
