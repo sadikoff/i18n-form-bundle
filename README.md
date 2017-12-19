@@ -84,6 +84,7 @@ Additional
 ----------
 
 ######TranslationsFormsType
+
 A different approach for entities which don't share fields untranslated. No strategy used here, only a locale field in your entity.
 
 ```php
@@ -105,6 +106,7 @@ $builder->add('translations', TranslationsFormsType::class, [
 * [2bis] Optionnal. - An array of options that you can set to your form
 
 ######TranslatedEntityType
+
 Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations
 
 ```php
@@ -122,6 +124,7 @@ $builder->add('medias', TranslatedEntityType::class, [
 * [3] Common options of the 'entity' symfony2 form type (multiple, ...)
 
 ######Assets
+
 If you already use Twitter Bootstrap, you only need to enable the Tab functionality and use `a2lix_translation_bootstrap.js`.
 
 Otherwise, you will still need jquery, and you use `a2lix_translation_default.js` and `a2lix_translation_default.css`.
