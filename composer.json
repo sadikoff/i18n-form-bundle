@@ -2,7 +2,16 @@
     "name": "koff/i18n-form-bundle",
     "type": "symfony-bundle",
     "description": "Translate your doctrine objects easily with some helps",
-    "keywords": ["symfony2", "doctrine2", "i18n", "internationalization", "translation", "translatable", "form", "knplabs"],
+    "keywords": [
+        "symfony2",
+        "doctrine2",
+        "i18n",
+        "internationalization",
+        "translation",
+        "translatable",
+        "form",
+        "knplabs"
+    ],
     "homepage": "https://github.com/sadikoff/i18n-form-bundle",
     "license": "MIT",
     "authors": [
@@ -17,17 +26,19 @@
     ],
     "require": {
         "php": "^7.0.8",
-        "symfony/config": "^3.4|^4.0",
-        "symfony/dependency-injection": "^3.4|^4.0",
-        "symfony/form": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0",
-        "symfony/doctrine-bridge": "^3.4|^4.0"
+        "symfony/config": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "symfony/form": "~3.4|~4.0",
+        "symfony/http-kernel": "~3.4|~4.0",
+        "symfony/twig-bridge": "~3.4|~4.0",
+        "symfony/doctrine-bridge": "~3.4|~4.0",
+        "twig/twig": "~1.34|~2.4"
     },
     "require-dev": {
         "symfony/validator": "^3.4|^4.0",
         "symfony/phpunit-bridge": "^3.4|^4.0",
         "friendsofphp/php-cs-fixer": "^2.8",
-        "doctrine/orm": "~2.4"
+        "doctrine/orm": "^2.5"
     },
     "suggest": {
         "knplabs/doctrine-behaviors": "For Knp strategy",
@@ -41,10 +52,14 @@
         "sort-packages": true
     },
     "autoload": {
-        "psr-4": { "Koff\\Bundle\\I18nFormBundle\\": "src/" }
+        "psr-4": {
+            "Koff\\Bundle\\I18nFormBundle\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "Koff\\Bundle\\I18nFormBundle\\Tests\\": "tests/" }
+        "psr-4": {
+            "Koff\\Bundle\\I18nFormBundle\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "branch-alias": {
