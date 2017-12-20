@@ -26,6 +26,7 @@
     ],
     "require": {
         "php": "^7.0.8",
+        "doctrine/doctrine-bundle": "^1.6.10",
         "symfony/config": "~3.4|~4.0",
         "symfony/dependency-injection": "~3.4|~4.0",
         "symfony/form": "~3.4|~4.0",
