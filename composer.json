@@ -27,18 +27,17 @@
     "require": {
         "php": "^7.0.8",
         "doctrine/doctrine-bundle": "^1.6.10",
+        "doctrine/orm": "^2.5",
         "symfony/config": "~3.4|~4.0",
         "symfony/dependency-injection": "~3.4|~4.0",
         "symfony/form": "~3.4|~4.0",
         "symfony/http-kernel": "~3.4|~4.0",
-        "symfony/twig-bundle": "~3.4|~4.0",
-        "symfony/doctrine-bridge": "~3.4|~4.0"
+        "symfony/twig-bundle": "~3.4|~4.0"
     },
     "require-dev": {
         "symfony/validator": "^3.4|^4.0",
         "symfony/phpunit-bridge": "^3.4|^4.0",
-        "friendsofphp/php-cs-fixer": "^2.8",
-        "doctrine/orm": "^2.5"
+        "friendsofphp/php-cs-fixer": "^2.8"
     },
     "suggest": {
         "knplabs/doctrine-behaviors": "For Knp strategy",
