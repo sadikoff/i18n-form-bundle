@@ -55,23 +55,41 @@ class DoctrineInfo implements ObjectInfoInterface
             if ($metadata->isAssociationInverseSide($assocName)) {
                 $class = $metadata->getAssociationTargetClass($assocName);
 
-                $assocsConfigs[$assocName] = $metadata->isSingleValuedAssociation($assocName) ? [
-                    'field_type' => AutoFormType::class,
-                    'data_class' => $class,
-                    'required' => !(array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable'])
-                ] : [
-                    'field_type'    => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-                    'entry_type'    => AutoFormType::class,
-                    'entry_options' => [
-                        'data_class' => $class,
-                    ],
-                    'allow_add'     => true,
-                    'by_reference'  => false,
-                ];
+                $assocsConfigs[$assocName] = $this->generateConfig($class, $metadata, $assocName);
             }
         }
 
         return $assocsConfigs;
+    }
+
+    /**
+     * @param string        $class
+     * @param ClassMetadata $metadata
+     * @param string        $assocName
+     *
+     * @return array
+     */
+    private function generateConfig($class, ClassMetadata $metadata, $assocName)
+    {
+        if ($metadata->isSingleValuedAssociation($assocName)) {
+            $config = [
+                'field_type' => AutoFormType::class,
+                'data_class' => $class,
+                'required' => !(array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable']),
+            ];
+        } else {
+            $config = [
+                'field_type' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+                'entry_type' => AutoFormType::class,
+                'entry_options' => [
+                    'data_class' => $class,
+                ],
+                'allow_add' => true,
+                'by_reference' => false,
+            ];
+        }
+
+        return $config;
     }
 
     /**
