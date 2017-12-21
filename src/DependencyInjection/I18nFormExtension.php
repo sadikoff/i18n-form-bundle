@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * Class I18nFormExtension
+ * Class I18nFormExtension.
  */
 class I18nFormExtension extends Extension
 {
@@ -27,7 +27,7 @@ class I18nFormExtension extends Extension
 
         $localeProvider = $container->getDefinition('koff_i18n_form.locale_provider');
         $localeProvider->replaceArgument(0, $config['locales']);
-        $localeProvider->replaceArgument(1, $container->getParameter('%kernel.default_locale%'));
+        $localeProvider->replaceArgument(1, $container->getParameter('kernel.default_locale'));
         $localeProvider->replaceArgument(2, $config['required_locales']);
 
         $formManipulator = $container->getDefinition('koff_i18n_form.form_manipulator');
