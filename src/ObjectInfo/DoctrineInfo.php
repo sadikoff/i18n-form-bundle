@@ -2,9 +2,8 @@
 
 namespace Koff\Bundle\I18nFormBundle\ObjectInfo;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 
 class DoctrineInfo implements ObjectInfoInterface
@@ -53,33 +52,23 @@ class DoctrineInfo implements ObjectInfoInterface
         $assocsConfigs = [];
 
         foreach ($assocNames as $assocName) {
-            if (!$metadata->isAssociationInverseSide($assocName)) {
-                continue;
-            }
+            if ($metadata->isAssociationInverseSide($assocName)) {
+                $class = $metadata->getAssociationTargetClass($assocName);
 
-            $class = $metadata->getAssociationTargetClass($assocName);
-
-            if ($metadata->isSingleValuedAssociation($assocName)) {
-                $nullable = ($metadata instanceof ClassMetadataInfo) && isset($metadata->discriminatorColumn['nullable']) && $metadata->discriminatorColumn['nullable'];
-
-                $assocsConfigs[$assocName] = [
+                $assocsConfigs[$assocName] = $metadata->isSingleValuedAssociation($assocName) ? [
                     'field_type' => AutoFormType::class,
                     'data_class' => $class,
-                    'required' => !$nullable,
+                    'required' => !(array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable'])
+                ] : [
+                    'field_type'    => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+                    'entry_type'    => AutoFormType::class,
+                    'entry_options' => [
+                        'data_class' => $class,
+                    ],
+                    'allow_add'     => true,
+                    'by_reference'  => false,
                 ];
-
-                continue;
             }
-
-            $assocsConfigs[$assocName] = [
-                'field_type' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-                'entry_type' => AutoFormType::class,
-                'entry_options' => [
-                    'data_class' => $class,
-                ],
-                'allow_add' => true,
-                'by_reference' => false,
-            ];
         }
 
         return $assocsConfigs;
