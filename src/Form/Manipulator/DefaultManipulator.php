@@ -31,41 +31,45 @@ class DefaultManipulator implements FormManipulatorInterface
         $class = $this->getDataClass($form);
         $formOptions = $form->getConfig()->getOptions();
 
-        // Filtering to remove excludedFields
-        $objectFieldsConfig = $this->objectInfo->getFieldsConfig($class);
-        $usuableObjectFieldsConfig = $this->filteringUsuableFields(
-            $objectFieldsConfig,
-            $formOptions['excluded_fields']
-        );
+        $formFields = $formOptions['fields'];
 
-        if (empty($formOptions['fields'])) {
-            return $usuableObjectFieldsConfig;
+        $objectFields = $this->objectInfo->getFieldsConfig($class);
+        $objectFields = $this->filteringUsuableFields($objectFields, $formOptions['excluded_fields']);
+
+        if (empty($formFields)) {
+            return $objectFields;
         }
 
-        // Check unknows fields
-        $unknowsFields = array_diff(array_keys($formOptions['fields']), array_keys($usuableObjectFieldsConfig));
+        $this->checkUnknownFields(array_keys($formFields), array_keys($objectFields), $class);
+
+        $fieldsConfig = [];
+
+        foreach ($formFields as $fieldName => $fieldConfig) {
+            if (null === $fieldConfig || (isset($fieldConfig['display']) && (false === $fieldConfig['display']))) {
+                continue;
+            }
+
+            $fieldsConfig[$fieldName] = $fieldConfig + $objectFields[$fieldName];
+        }
+
+        return $fieldsConfig;
+    }
+
+    /**
+     * @param array  $formFields
+     * @param array  $objectFields
+     * @param string $class
+     *
+     * @throws \RuntimeException
+     */
+    private function checkUnknownFields($formFields, $objectFields, $class)
+    {
+        $unknowsFields = array_diff($formFields, $objectFields);
         if (count($unknowsFields)) {
             throw new \RuntimeException(
                 sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class)
             );
         }
-
-        foreach ($formOptions['fields'] as $formFieldName => $formFieldConfig) {
-            if (null === $formFieldConfig) {
-                continue;
-            }
-
-            // If display undesired, remove
-            if (isset($formFieldConfig['display']) && (false === $formFieldConfig['display'])) {
-                unset($usuableObjectFieldsConfig[$formFieldName]);
-                continue;
-            }
-
-            // Override with formFieldsConfig priority
-            $usuableObjectFieldsConfig[$formFieldName] = $formFieldConfig + $usuableObjectFieldsConfig[$formFieldName];
-        }
-
-        return $usuableObjectFieldsConfig;
     }
 
     /**
