@@ -55,7 +55,7 @@ abstract class TypeTestCase extends BaseTypeTestCase
 
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . '/../Fixtures/Entity'], true, null, null, false);
         $entityManager = EntityManager::create(['driver' => 'pdo_sqlite'], $config);
-        $doctrineInfo = new \Koff\Bundle\I18nFormBundle\ObjectInfo\DoctrineInfo($entityManager->getMetadataFactory());
+        $doctrineInfo = new \Koff\Bundle\I18nFormBundle\ObjectInfo\DoctrineInfo($entityManager);
 
         return $this->defaultFormManipulator = new \Koff\Bundle\I18nFormBundle\Form\Manipulator\DefaultManipulator($doctrineInfo, ['id', 'locale', 'translatable']);
     }

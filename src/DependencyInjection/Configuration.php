@@ -28,12 +28,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('locale_provider')->defaultValue('default')->end()
-                ->scalarNode('default_locale')->defaultNull()->end()
                 ->arrayNode('locales')
+                    ->defaultValue(['en'])
                     ->beforeNormalization()
                         ->ifString()
                         ->then(function ($v) {
-                            return preg_split('/\s*,\s*/', $v);
+                            return preg_split('/\s*[,|]\s*/', $v);
                         })
                     ->end()
                     ->requiresAtLeastOneElement()
@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
                     ->beforeNormalization()
                         ->ifString()
                         ->then(function ($v) {
-                            return preg_split('/\s*,\s*/', $v);
+                            return preg_split('/\s*[,|]\s*/', $v);
                         })
                     ->end()
                     ->prototype('scalar')->end()
@@ -53,12 +53,11 @@ class Configuration implements ConfigurationInterface
                     ->beforeNormalization()
                         ->ifString()
                         ->then(function ($v) {
-                            return preg_split('/\s*,\s*/', $v);
+                            return preg_split('/\s*[,|]\s*/', $v);
                         })
                     ->end()
                     ->prototype('scalar')->end()
                 ->end()
-                ->scalarNode('templating')->defaultValue('@KoffI18nForm/default.html.twig')->end()
             ->end()
         ;
 

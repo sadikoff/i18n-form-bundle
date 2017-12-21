@@ -3,21 +3,21 @@
 namespace Koff\Bundle\I18nFormBundle\ObjectInfo;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\Mapping\ClassMetadataFactory;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 
 class DoctrineInfo implements ObjectInfoInterface
 {
-    /** @var ClassMetadataFactory */
-    private $classMetadataFactory;
+    /** @var EntityManagerInterface */
+    private $entityManager;
 
     /**
-     * @param ClassMetadataFactory $classMetadataFactory
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(ClassMetadataFactory $classMetadataFactory)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->classMetadataFactory = $classMetadataFactory;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -29,7 +29,7 @@ class DoctrineInfo implements ObjectInfoInterface
     {
         $fieldsConfig = [];
 
-        $metadata = $this->classMetadataFactory->getMetadataFor($class);
+        $metadata = $this->entityManager->getClassMetadata($class);
 
         if ($fields = $metadata->getFieldNames()) {
             $fieldsConfig = array_fill_keys($fields, []);
@@ -95,7 +95,7 @@ class DoctrineInfo implements ObjectInfoInterface
      */
     public function getAssociationTargetClass($class, $fieldName)
     {
-        $metadata = $this->classMetadataFactory->getMetadataFor($class);
+        $metadata = $this->entityManager->getClassMetadata($class);
 
         if (!$metadata->hasAssociation($fieldName)) {
             throw new \Exception(

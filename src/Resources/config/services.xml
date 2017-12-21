@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" />
+
+        <!-- Locale -->
+        <service id="koff_i18n_form.locale_provider" class="Koff\Bundle\I18nFormBundle\Locale\DefaultProvider">
+            <argument/>
+            <argument/>
+            <argument/>
+        </service>
+        <!-- /Locale -->
+
+        <!-- Manipulator -->
+        <service id="koff_i18n_form.doctrine_info" class="Koff\Bundle\I18nFormBundle\ObjectInfo\DoctrineInfo">
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+        </service>
+
+        <service id="koff_i18n_form.form_manipulator" class="Koff\Bundle\I18nFormBundle\Form\Manipulator\DefaultManipulator">
+            <argument type="service" id="koff_i18n_form.doctrine_info" />
+            <argument type="collection"/>
+        </service>
+        <!-- /Manipulator -->
+
+        <!-- Form Listeners -->
+        <service id="koff_i18n_form.listener.translations" class="Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsListener">
+            <argument type="service" id="koff_i18n_form.form_manipulator" />
+        </service>
+
+        <service id="koff_i18n_form.listener.translations_forms" class="Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsFormsListener"/>
+
+        <service id="koff_i18n_form.listener.autoform" class="Koff\Bundle\I18nFormBundle\Form\EventListener\AutoFormListener">
+            <argument type="service" id="koff_i18n_form.form_manipulator" />
+        </service>
+
+        <!-- Form Types -->
+        <service id="koff_i18n_form.type.translations" class="Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType">
+            <argument type="service" id="koff_i18n_form.listener.translations" />
+            <argument type="service" id="koff_i18n_form.locale_provider" />
+
+            <tag name="form.type" />
+        </service>
+
+        <service id="koff_i18n_form.type.translations_forms" class="Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType">
+            <argument type="service" id="koff_i18n_form.listener.translations_forms" />
+            <argument type="service" id="koff_i18n_form.locale_provider" />
+
+            <tag name="form.type" />
+        </service>
+
+        <service id="koff_i18n_form.type.translations_locales_selector" class="Koff\Bundle\I18nFormBundle\Form\Type\TranslationsLocalesSelectorType">
+            <argument type="service" id="koff_i18n_form.locale_provider" />
+
+            <tag name="form.type" />
+        </service>
+
+        <service id="koff_i18n_form.type.translated_entity" class="Koff\Bundle\I18nFormBundle\Form\Type\TranslatedEntityType">
+            <argument type="service" id="request_stack" />
+
+            <tag name="form.type" />
+        </service>
+
+        <service id="koff_i18n_form.type.autoform" class="Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType">
+            <argument type="service" id="koff_i18n_form.listener.autoform" />
+
+            <tag name="form.type" />
+        </service>
+
+    </services>
+</container>
