@@ -8,9 +8,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * Class I18NFormExtension
+ * Class I18nFormExtension
  */
-class I18NFormExtension extends Extension
+class I18nFormExtension extends Extension
 {
     /**
      * @param array            $configs
