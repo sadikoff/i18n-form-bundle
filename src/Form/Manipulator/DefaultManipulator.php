@@ -7,7 +7,7 @@ use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Class DefaultManipulator
+ * Class DefaultManipulator.
  *
  * @author David ALLIX
  * @author Sadicov Vladimir <sadikoff@gmail.com>
@@ -36,7 +36,6 @@ class DefaultManipulator implements FormManipulatorInterface
     {
         $class = $this->getDataClass($form);
         $formOptions = $form->getConfig()->getOptions();
-
         $formFields = $formOptions['fields'];
 
         $objectFields = $this->objectInfo->getFieldsConfig($class);
@@ -49,14 +48,7 @@ class DefaultManipulator implements FormManipulatorInterface
         $this->checkUnknownFields($formFields, $objectFields, $class);
 
         $fieldsConfig = $this->filterFields($formFields);
-
-        array_walk(
-            $fieldsConfig,
-            function (&$v, $k, $d) {
-                $v += $d[$k];
-            },
-            $objectFields
-        );
+        array_walk($fieldsConfig, function (&$v, $k, $d) {$v += $d[$k]; }, $objectFields);
 
         return $fieldsConfig;
     }
@@ -116,11 +108,6 @@ class DefaultManipulator implements FormManipulatorInterface
 
     private function filterFields($fields)
     {
-        return array_filter(
-            $fields,
-            function ($v) {
-                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
-            }
-        );
+        return array_filter($fields, function ($v) {return !(null === $v || (array_key_exists('display', $v) && !$v['display'])); });
     }
 }
