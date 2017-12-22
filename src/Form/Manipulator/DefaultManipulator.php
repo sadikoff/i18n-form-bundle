@@ -45,11 +45,9 @@ class DefaultManipulator implements FormManipulatorInterface
         $fieldsConfig = [];
 
         foreach ($formFields as $fieldName => $fieldConfig) {
-            if (null === $fieldConfig || (isset($fieldConfig['display']) && (false === $fieldConfig['display']))) {
-                continue;
+            if (null !== $fieldConfig && (!isset($fieldConfig['display']) || (false !== $fieldConfig['display']))) {
+                $fieldsConfig[$fieldName] = $fieldConfig + $objectFields[$fieldName];
             }
-
-            $fieldsConfig[$fieldName] = $fieldConfig + $objectFields[$fieldName];
         }
 
         return $fieldsConfig;
@@ -65,7 +63,7 @@ class DefaultManipulator implements FormManipulatorInterface
     private function checkUnknownFields($formFields, $objectFields, $class)
     {
         $unknowsFields = array_diff($formFields, $objectFields);
-        if (count($unknowsFields)) {
+        if (!empty($unknowsFields)) {
             throw new \RuntimeException(
                 sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class)
             );
