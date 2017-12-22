@@ -42,13 +42,20 @@ class DefaultManipulator implements FormManipulatorInterface
 
         $this->checkUnknownFields(array_keys($formFields), array_keys($objectFields), $class);
 
-        $fieldsConfig = [];
-
-        foreach ($formFields as $fieldName => $fieldConfig) {
-            if (null !== $fieldConfig && (!isset($fieldConfig['display']) || (false !== $fieldConfig['display']))) {
-                $fieldsConfig[$fieldName] = $fieldConfig + $objectFields[$fieldName];
+        $fieldsConfig = array_filter(
+            $formFields,
+            function ($v) {
+                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
             }
-        }
+        );
+
+        array_walk(
+            $fieldsConfig,
+            function (&$v, $k, $d) {
+                $v += $d[$k];
+            },
+            $objectFields
+        );
 
         return $fieldsConfig;
     }
