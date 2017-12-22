@@ -20,33 +20,22 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('koff_i18n_form');
+        $root = $treeBuilder->root('koff_i18n_form')->children();
 
-        $rootNode
-            ->children()
-                ->arrayNode('locales')
-                    ->defaultValue(['en'])
-                    ->beforeNormalization()
-                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
-                    ->end()
-                    ->requiresAtLeastOneElement()
-                    ->prototype('scalar')->end()
-                ->end()
-                ->arrayNode('required_locales')
-                    ->beforeNormalization()
-                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
-                    ->end()
-                    ->prototype('scalar')->end()
-                ->end()
-                ->arrayNode('excluded_fields')
-                    ->defaultValue(['id', 'locale', 'translatable'])
-                    ->beforeNormalization()
-                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
-                    ->end()
-                    ->prototype('scalar')->end()
-                ->end()
-            ->end()
-        ;
+        $locales = $root->arrayNode('locales');
+        $locales->defaultValue(['en']);
+        $locales->beforeNormalization()->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); });
+        $locales->requiresAtLeastOneElement();
+        $locales->prototype('scalar');
+
+        $required = $root->arrayNode('required_locales');
+        $required->beforeNormalization()->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); });
+        $required->prototype('scalar');
+
+        $excluded = $root->arrayNode('excluded_fields');
+        $excluded->defaultValue(['id', 'locale', 'translatable']);
+        $excluded->beforeNormalization()->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); });
+        $excluded->prototype('scalar');
 
         return $treeBuilder;
     }
