@@ -98,30 +98,33 @@ class TranslationsListener extends KoffI18nListener
     public function getFieldsOptions(FormInterface $form, array $formOptions)
     {
         $fieldsOptions = [];
-
         $fieldsConfig = $this->formManipulator->getFieldsConfig($form);
-        foreach ($fieldsConfig as $fieldName => $fieldConfig) {
-            // Simplest case: General options for all locales
-            if (!isset($fieldConfig['locale_options'])) {
-                foreach ($formOptions['locales'] as $locale) {
-                    $fieldsOptions[$locale][$fieldName] = $fieldConfig;
-                }
 
-                continue;
-            }
-
-            // Custom options by locale
-            $localesFieldOptions = $fieldConfig['locale_options'];
-            unset($fieldConfig['locale_options']);
+        foreach ($fieldsConfig as $field => $config) {
+            $localeOptions = $this->extractLocaleOptions($config);
 
             foreach ($formOptions['locales'] as $locale) {
-                $localeFieldOptions = isset($localesFieldOptions[$locale]) ? $localesFieldOptions[$locale] : [];
-                if (!isset($localeFieldOptions['display']) || (true === $localeFieldOptions['display'])) {
-                    $fieldsOptions[$locale][$fieldName] = $localeFieldOptions + $fieldConfig;
-                }
+                $fieldsOptions[$locale][$field] = (false !== $localeOptions && array_key_exists($locale, $localeOptions)) ? ($localeOptions[$locale] + $config) : $config;
             }
         }
 
         return $fieldsOptions;
+    }
+
+    /**
+     * @param $config
+     *
+     * @return array|bool
+     */
+    private function extractLocaleOptions(&$config)
+    {
+        if (array_key_exists('locale_options', $config)) {
+            $localeOptions = $config['locale_options'];
+            unset($config['locale_options']);
+
+            return $localeOptions;
+        }
+
+        return false;
     }
 }

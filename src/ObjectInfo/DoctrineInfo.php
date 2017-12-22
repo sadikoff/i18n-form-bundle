@@ -72,24 +72,22 @@ class DoctrineInfo implements ObjectInfoInterface
     private function generateConfig($class, ClassMetadata $metadata, $assocName)
     {
         if ($metadata->isSingleValuedAssociation($assocName)) {
-            $config = [
+            return [
                 'field_type' => AutoFormType::class,
                 'data_class' => $class,
                 'required' => !(array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable']),
             ];
-        } else {
-            $config = [
-                'field_type' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-                'entry_type' => AutoFormType::class,
-                'entry_options' => [
-                    'data_class' => $class,
-                ],
-                'allow_add' => true,
-                'by_reference' => false,
-            ];
         }
 
-        return $config;
+        return [
+            'field_type' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+            'entry_type' => AutoFormType::class,
+            'entry_options' => [
+                'data_class' => $class,
+            ],
+            'allow_add' => true,
+            'by_reference' => false,
+        ];
     }
 
     /**
