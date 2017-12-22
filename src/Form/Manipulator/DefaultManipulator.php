@@ -6,6 +6,12 @@ use Koff\Bundle\I18nFormBundle\ObjectInfo\ObjectInfoInterface;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Form\FormInterface;
 
+/**
+ * Class DefaultManipulator
+ *
+ * @author David ALLIX
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
 class DefaultManipulator implements FormManipulatorInterface
 {
     /** @var ObjectInfoInterface */
@@ -34,20 +40,15 @@ class DefaultManipulator implements FormManipulatorInterface
         $formFields = $formOptions['fields'];
 
         $objectFields = $this->objectInfo->getFieldsConfig($class);
-        $objectFields = $this->filteringUsuableFields($objectFields, $formOptions['excluded_fields']);
+        $objectFields = $this->filterObjectFields($objectFields, $formOptions['excluded_fields']);
 
-        if (empty($formFields)) {
+        if (!empty($formFields)) {
             return $objectFields;
         }
 
-        $this->checkUnknownFields(array_keys($formFields), array_keys($objectFields), $class);
+        $this->checkUnknownFields($formFields, $objectFields, $class);
 
-        $fieldsConfig = array_filter(
-            $formFields,
-            function ($v) {
-                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
-            }
-        );
+        $fieldsConfig = $this->filterFields($formFields);
 
         array_walk(
             $fieldsConfig,
@@ -69,7 +70,7 @@ class DefaultManipulator implements FormManipulatorInterface
      */
     private function checkUnknownFields($formFields, $objectFields, $class)
     {
-        $unknowsFields = array_diff($formFields, $objectFields);
+        $unknowsFields = array_diff_key($formFields, $objectFields);
         if (!empty($unknowsFields)) {
             throw new \RuntimeException(
                 sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class)
@@ -106,19 +107,20 @@ class DefaultManipulator implements FormManipulatorInterface
      *
      * @return array
      */
-    private function filteringUsuableFields(array $objectFieldsConfig, array $formExcludedFields)
+    private function filterObjectFields(array $objectFieldsConfig, array $formExcludedFields)
     {
-        $excludedFields = array_merge($this->globalExcludedFields, $formExcludedFields);
+        $excludedFields = array_fill_keys(array_merge($this->globalExcludedFields, $formExcludedFields), []);
 
-        $usualableFields = [];
-        foreach ($objectFieldsConfig as $fieldName => $fieldConfig) {
-            if (in_array($fieldName, $excludedFields, true)) {
-                continue;
+        return array_diff_key($objectFieldsConfig, $excludedFields);
+    }
+
+    private function filterFields($fields)
+    {
+        return array_filter(
+            $fields,
+            function ($v) {
+                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
             }
-
-            $usualableFields[$fieldName] = $fieldConfig;
-        }
-
-        return $usualableFields;
+        );
     }
 }
