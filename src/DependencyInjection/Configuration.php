@@ -1,20 +1,17 @@
 <?php
 
-/*
- * This file is part of A2lix projects.
- *
- * (c) David ALLIX
- * (c) Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+/**
+ * Class Configuration.
+ *
+ * @author David ALLIX
+ * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -27,34 +24,24 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('locale_provider')->defaultValue('default')->end()
                 ->arrayNode('locales')
                     ->defaultValue(['en'])
                     ->beforeNormalization()
-                        ->ifString()
-                        ->then(function ($v) {
-                            return preg_split('/\s*[,|]\s*/', $v);
-                        })
+                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
                     ->end()
                     ->requiresAtLeastOneElement()
                     ->prototype('scalar')->end()
                 ->end()
                 ->arrayNode('required_locales')
                     ->beforeNormalization()
-                        ->ifString()
-                        ->then(function ($v) {
-                            return preg_split('/\s*[,|]\s*/', $v);
-                        })
+                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
                     ->end()
                     ->prototype('scalar')->end()
                 ->end()
                 ->arrayNode('excluded_fields')
                     ->defaultValue(['id', 'locale', 'translatable'])
                     ->beforeNormalization()
-                        ->ifString()
-                        ->then(function ($v) {
-                            return preg_split('/\s*[,|]\s*/', $v);
-                        })
+                        ->ifString()->then(function ($v) {return preg_split('/\s*[,|]\s*/', $v); })
                     ->end()
                     ->prototype('scalar')->end()
                 ->end()
