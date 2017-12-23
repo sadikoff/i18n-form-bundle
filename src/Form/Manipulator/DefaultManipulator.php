@@ -41,7 +41,7 @@ class DefaultManipulator implements FormManipulatorInterface
         $objectFields = $this->objectInfo->getFieldsConfig($class);
         $objectFields = $this->filterObjectFields($objectFields, $formOptions['excluded_fields']);
 
-        if (!empty($formFields)) {
+        if (empty($formFields)) {
             return $objectFields;
         }
 
