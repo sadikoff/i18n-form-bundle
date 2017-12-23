@@ -97,34 +97,19 @@ class TranslationsListener extends KoffI18nListener
      */
     public function getFieldsOptions(FormInterface $form, array $formOptions)
     {
-        $fieldsOptions = [];
-        $fieldsConfig = $this->formManipulator->getFieldsConfig($form);
+        $fieldsOptions = array_fill_keys($formOptions['locales'], $this->formManipulator->getFieldsConfig($form));
 
-        foreach ($fieldsConfig as $field => $config) {
-            $localeOptions = $this->extractLocaleOptions($config);
+        foreach ($fieldsOptions as $locale => &$field) {
+            array_walk($field, function (&$v, $k, $l) {
+                if (array_key_exists('locale_options', $v) && array_key_exists($l, $v['locale_options'])) {
+                    $lo = $v['locale_options'];
+                    unset($v['locale_options']);
 
-            foreach ($formOptions['locales'] as $locale) {
-                $fieldsOptions[$locale][$field] = (false !== $localeOptions && array_key_exists($locale, $localeOptions)) ? ($localeOptions[$locale] + $config) : $config;
-            }
+                    $v = $lo[$l] + $v;
+                }
+            }, $locale);
         }
 
         return $fieldsOptions;
-    }
-
-    /**
-     * @param $config
-     *
-     * @return array|bool
-     */
-    private function extractLocaleOptions(&$config)
-    {
-        if (array_key_exists('locale_options', $config)) {
-            $localeOptions = $config['locale_options'];
-            unset($config['locale_options']);
-
-            return $localeOptions;
-        }
-
-        return false;
     }
 }

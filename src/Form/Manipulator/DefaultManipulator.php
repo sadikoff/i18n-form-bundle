@@ -62,7 +62,7 @@ class DefaultManipulator implements FormManipulatorInterface
      */
     private function checkUnknownFields($formFields, $objectFields, $class)
     {
-        $unknowsFields = array_diff_key($formFields, $objectFields);
+        $unknowsFields = array_keys(array_diff_key($formFields, $objectFields));
         if (!empty($unknowsFields)) {
             throw new \RuntimeException(
                 sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class)
