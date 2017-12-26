@@ -49,7 +49,6 @@ class Configuration implements ConfigurationInterface
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
                 ->end()
-            ->end()
         ;
     }
 
@@ -66,7 +65,6 @@ class Configuration implements ConfigurationInterface
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
                 ->end()
-            ->end()
         ;
     }
 
@@ -84,7 +82,6 @@ class Configuration implements ConfigurationInterface
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
                 ->end()
-            ->end()
         ;
     }
 }
