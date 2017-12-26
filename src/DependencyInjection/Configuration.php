@@ -43,11 +43,11 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('locales')
                     ->defaultValue(['en'])
+                    ->requiresAtLeastOneElement()
+                    ->prototype('scalar')
                     ->beforeNormalization()
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
-                    ->requiresAtLeastOneElement()
-                    ->prototype('scalar')
                 ->end()
             ->end()
         ;
@@ -61,10 +61,10 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('required_locales')
+                    ->prototype('scalar')
                     ->beforeNormalization()
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
-                    ->prototype('scalar')
                 ->end()
             ->end()
         ;
@@ -79,10 +79,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('locales')
                     ->defaultValue(['id', 'locale', 'translatable'])
+                    ->prototype('scalar')
                     ->beforeNormalization()
                         ->ifString()->then($this->convertStringToArray)
                     ->end()
-                    ->prototype('scalar')
                 ->end()
             ->end()
         ;
