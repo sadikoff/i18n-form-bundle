@@ -14,6 +14,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     private $convertStringToArray = null;
+
     /**
      * {@inheritdoc}
      */
@@ -43,9 +44,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('locales')
                     ->defaultValue(['en'])
                     ->beforeNormalization()
-                        ->ifString()
-                            ->then($this->convertStringToArray)
-                        ->end()
+                        ->ifString()->then($this->convertStringToArray)
                     ->end()
                     ->requiresAtLeastOneElement()
                     ->prototype('scalar')
@@ -63,9 +62,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('required_locales')
                     ->beforeNormalization()
-                        ->ifString()
-                            ->then($this->convertStringToArray)
-                        ->end()
+                        ->ifString()->then($this->convertStringToArray)
                     ->end()
                     ->prototype('scalar')
                 ->end()
@@ -83,9 +80,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('locales')
                     ->defaultValue(['id', 'locale', 'translatable'])
                     ->beforeNormalization()
-                        ->ifString()
-                            ->then($this->convertStringToArray)
-                        ->end()
+                        ->ifString()->then($this->convertStringToArray)
                     ->end()
                     ->prototype('scalar')
                 ->end()
