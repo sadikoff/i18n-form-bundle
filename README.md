@@ -2,10 +2,10 @@ KoffI18nFormBundle
 ==================
 
 [![Build Status](https://travis-ci.org/sadikoff/i18n-form-bundle.svg?branch=master)](https://travis-ci.org/sadikoff/i18n-form-bundle)
-[![Latest Stable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/stable.svg)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![Total Downloads](https://poser.pugx.org/koff/i18n-form-bundle/downloads.svg)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![Latest Unstable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/unstable.svg)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![License](https://poser.pugx.org/koff/i18n-form-bundle/license.svg)](https://packagist.org/packages/koff/i18n-form-bundle)
+[![Latest Stable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/stable.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
+[![Total Downloads](https://poser.pugx.org/koff/i18n-form-bundle/downloads.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
+[![Latest Unstable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/unstable.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
+[![License](https://poser.pugx.org/koff/i18n-form-bundle/license.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/?branch=master)
 [![StyleCI](https://styleci.io/repos/114292466/shield?branch=master)](https://styleci.io/repos/114292466)
 
@@ -16,8 +16,8 @@ Requirements
 * Symfony flex with Symfony 3.4|4.0
 * i18n Doctrine strategy of your choice
   * [KnpDoctrineExtension](https://github.com/KnpLabs/DoctrineBehaviors#translatable)
-  * [A2lixI18nDoctrineBundle](https://github.com/a2lix/I18nDoctrineBundle) [Deprecated - will be removed from bundle in v.4.0.5]
-  * [PrezentDoctrineTranslatableBundle](https://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md) [Deprecated - will be removed from bundle in v.4.0.5]
+  * [A2lixI18nDoctrineBundle](https://github.com/a2lix/I18nDoctrineBundle) [Deprecated - will be removed from bundle in v.4.0.6]
+  * [PrezentDoctrineTranslatableBundle](https://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md) [Deprecated - will be removed from bundle in v.4.0.6]
 
 Installation
 ------------

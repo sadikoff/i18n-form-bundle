@@ -2,45 +2,94 @@
 
 namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration.
  *
- * @author David ALLIX
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
+    private $convertStringToArray = null;
     /**
      * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $root = $treeBuilder->root('koff_i18n_form')->children();
+        $rootNode = $treeBuilder->root('i18n_form');
 
-        $convertStringToArray = function ($v) {
+        $this->convertStringToArray = function ($v) {
             return preg_split('/\s*[,|]\s*/', $v);
         };
 
-        $locales = $root->arrayNode('locales');
-        $locales->defaultValue(['en']);
-        $locales->beforeNormalization()->ifString()->then($convertStringToArray);
-        $locales->requiresAtLeastOneElement();
-        $locales->prototype('scalar');
-
-        $required = $root->arrayNode('required_locales');
-        $required->beforeNormalization()->ifString()->then($convertStringToArray);
-        $required->prototype('scalar');
-
-        $excluded = $root->arrayNode('excluded_fields');
-        $excluded->defaultValue(['id', 'locale', 'translatable']);
-        $excluded->beforeNormalization()->ifString()->then($convertStringToArray);
-        $excluded->prototype('scalar');
+        $this->localesSection($rootNode);
+        $this->requiredLocalesSection($rootNode);
+        $this->excludedFieldsSection($rootNode);
 
         return $treeBuilder;
+    }
+
+    /**
+     * @param ArrayNodeDefinition $rootNode
+     */
+    private function localesSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('locales')
+                    ->defaultValue(['en'])
+                    ->beforeNormalization()
+                        ->ifString()
+                            ->then($this->convertStringToArray)
+                        ->end()
+                    ->end()
+                    ->requiresAtLeastOneElement()
+                    ->prototype('scalar')
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * @param ArrayNodeDefinition $rootNode
+     */
+    private function requiredLocalesSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('required_locales')
+                    ->beforeNormalization()
+                        ->ifString()
+                            ->then($this->convertStringToArray)
+                        ->end()
+                    ->end()
+                    ->prototype('scalar')
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * @param ArrayNodeDefinition $rootNode
+     */
+    private function excludedFieldsSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('locales')
+                    ->defaultValue(['id', 'locale', 'translatable'])
+                    ->beforeNormalization()
+                        ->ifString()
+                            ->then($this->convertStringToArray)
+                        ->end()
+                    ->end()
+                    ->prototype('scalar')
+                ->end()
+            ->end()
+        ;
     }
 }
