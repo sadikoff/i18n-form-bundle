@@ -35,12 +35,7 @@ class AutoFormType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            [
-                'fields' => [],
-                'excluded_fields' => [],
-            ]
-        );
+        $resolver->setDefaults(['fields' => [], 'excluded_fields' => []]);
 
         $resolver->setNormalizer(
             'data_class',
