@@ -2,8 +2,8 @@
 
 namespace Koff\Bundle\I18nFormBundle\ObjectInfo;
 
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 
 class DoctrineInfo implements ObjectInfoInterface

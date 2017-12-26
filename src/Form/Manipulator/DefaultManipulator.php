@@ -2,8 +2,8 @@
 
 namespace Koff\Bundle\I18nFormBundle\Form\Manipulator;
 
-use Koff\Bundle\I18nFormBundle\ObjectInfo\ObjectInfoInterface;
 use Doctrine\Common\Util\ClassUtils;
+use Koff\Bundle\I18nFormBundle\ObjectInfo\ObjectInfoInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -16,6 +16,7 @@ class DefaultManipulator implements FormManipulatorInterface
 {
     /** @var ObjectInfoInterface */
     private $objectInfo;
+
     /** @var array */
     private $globalExcludedFields;
 
@@ -48,7 +49,9 @@ class DefaultManipulator implements FormManipulatorInterface
         $this->checkUnknownFields($formFields, $objectFields, $class);
 
         $fieldsConfig = $this->filterFields($formFields);
-        array_walk($fieldsConfig, function (&$v, $k, $d) {$v += $d[$k]; }, $objectFields);
+        array_walk($fieldsConfig, function (&$v, $k, $d) {
+            $v += $d[$k];
+        }, $objectFields);
 
         return $fieldsConfig;
     }
@@ -86,6 +89,7 @@ class DefaultManipulator implements FormManipulatorInterface
         while ($formParent = $form->getParent()) {
             if (!$dataClass = $formParent->getConfig()->getDataClass()) {
                 $form = $formParent;
+
                 continue;
             }
 
@@ -108,6 +112,8 @@ class DefaultManipulator implements FormManipulatorInterface
 
     private function filterFields($fields)
     {
-        return array_filter($fields, function ($v) {return !(null === $v || (array_key_exists('display', $v) && !$v['display'])); });
+        return array_filter($fields, function ($v) {
+            return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
+        });
     }
 }

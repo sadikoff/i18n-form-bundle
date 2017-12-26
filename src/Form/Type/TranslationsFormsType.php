@@ -25,6 +25,7 @@ class TranslationsFormsType extends AbstractType
 {
     /** @var TranslationsFormsListener */
     private $translationsListener;
+
     /** @var LocaleProviderInterface */
     private $localeProvider;
 
