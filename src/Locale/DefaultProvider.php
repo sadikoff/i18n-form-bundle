@@ -15,8 +15,10 @@ class DefaultProvider implements LocaleProviderInterface
 {
     /** @var array */
     protected $locales;
+
     /** @var string */
     protected $defaultLocale;
+
     /** @var array */
     protected $requiredLocales;
 

@@ -24,6 +24,7 @@ class TranslationsType extends AbstractType
 {
     /** @var TranslationsListener */
     private $translationsListener;
+
     /** @var LocaleProviderInterface */
     private $localeProvider;
 
