@@ -3,7 +3,7 @@
 namespace Koff\Bundle\I18nFormBundle\Form\Manipulator;
 
 use Doctrine\Common\Util\ClassUtils;
-use Koff\Bundle\I18nFormBundle\ObjectInfo\ObjectInfoInterface;
+use Koff\Bundle\I18nFormBundle\Extractor\FieldsExtractorInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -12,21 +12,21 @@ use Symfony\Component\Form\FormInterface;
  * @author David ALLIX
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
-class DefaultManipulator implements FormManipulatorInterface
+class FormManipulator implements FormManipulatorInterface
 {
-    /** @var ObjectInfoInterface */
-    private $objectInfo;
+    /** @var FieldsExtractorInterface */
+    private $fieldsExtractor;
 
     /** @var array */
     private $globalExcludedFields;
 
     /**
-     * @param ObjectInfoInterface $objectInfo
-     * @param array               $globalExcludedFields
+     * @param FieldsExtractorInterface $fieldsExtractor
+     * @param array                    $globalExcludedFields
      */
-    public function __construct(ObjectInfoInterface $objectInfo, array $globalExcludedFields = [])
+    public function __construct(FieldsExtractorInterface $fieldsExtractor, array $globalExcludedFields = [])
     {
-        $this->objectInfo = $objectInfo;
+        $this->fieldsExtractor = $fieldsExtractor;
         $this->globalExcludedFields = $globalExcludedFields;
     }
 
@@ -39,7 +39,7 @@ class DefaultManipulator implements FormManipulatorInterface
         $formOptions = $form->getConfig()->getOptions();
         $formFields = $formOptions['fields'];
 
-        $objectFields = $this->objectInfo->getFieldsConfig($class);
+        $objectFields = $this->fieldsExtractor->getFieldsConfig($class);
         $objectFields = $this->filterObjectFields($objectFields, $formOptions['excluded_fields']);
 
         if (empty($formFields)) {
@@ -49,9 +49,13 @@ class DefaultManipulator implements FormManipulatorInterface
         $this->checkUnknownFields($formFields, $objectFields, $class);
 
         $fieldsConfig = $this->filterFields($formFields);
-        array_walk($fieldsConfig, function (&$v, $k, $d) {
-            $v += $d[$k];
-        }, $objectFields);
+        array_walk(
+            $fieldsConfig,
+            function (&$v, $k, $d) {
+                $v += $d[$k];
+            },
+            $objectFields
+        );
 
         return $fieldsConfig;
     }
@@ -93,7 +97,7 @@ class DefaultManipulator implements FormManipulatorInterface
                 continue;
             }
 
-            return $this->objectInfo->getAssociationTargetClass($dataClass, $form->getName());
+            return $this->fieldsExtractor->getAssociationTargetClass($dataClass, $form->getName());
         }
     }
 
@@ -112,8 +116,11 @@ class DefaultManipulator implements FormManipulatorInterface
 
     private function filterFields($fields)
     {
-        return array_filter($fields, function ($v) {
-            return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
-        });
+        return array_filter(
+            $fields,
+            function ($v) {
+                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
+            }
+        );
     }
 }

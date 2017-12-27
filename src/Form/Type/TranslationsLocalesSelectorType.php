@@ -12,7 +12,7 @@
 
 namespace Koff\Bundle\I18nFormBundle\Form\Type;
 
-use Koff\Bundle\I18nFormBundle\Locale\LocaleProviderInterface;
+use Koff\Bundle\I18nFormBundle\Provider\LocaleProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormInterface;

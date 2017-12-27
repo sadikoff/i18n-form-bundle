@@ -12,7 +12,7 @@
 namespace Koff\Bundle\I18nFormBundle\Tests\Locale;
 
 use PHPUnit\Framework\TestCase;
-use Koff\Bundle\I18nFormBundle\Locale\DefaultProvider;
+use Koff\Bundle\I18nFormBundle\Provider\LocaleProvider;
 
 class DefaultProviderTest extends TestCase
 {
@@ -27,12 +27,12 @@ class DefaultProviderTest extends TestCase
         $this->defaultLocale = 'en';
         $this->requiredLocales = ['es', 'en'];
 
-        $this->provider = new DefaultProvider($this->locales, $this->defaultLocale, $this->requiredLocales);
+        $this->provider = new LocaleProvider($this->locales, $this->defaultLocale, $this->requiredLocales);
     }
 
     public function testDefaultLocaleIsInLocales()
     {
-        $classname = 'Koff\Bundle\I18nFormBundle\Locale\DefaultProvider';
+        $classname = 'Koff\Bundle\I18nFormBundle\Provider\LocaleProvider';
 
         // Get mock, without the constructor being called
         $mock = $this->getMockBuilder($classname)
@@ -53,7 +53,7 @@ class DefaultProviderTest extends TestCase
 
     public function testRequiredLocaleAreInLocales()
     {
-        $classname = 'Koff\Bundle\I18nFormBundle\Locale\DefaultProvider';
+        $classname = 'Koff\Bundle\I18nFormBundle\Provider\LocaleProvider';
 
         // Get mock, without the constructor being called
         $mock = $this->getMockBuilder($classname)

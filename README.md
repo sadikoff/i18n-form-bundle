@@ -15,7 +15,8 @@ Requirements
 ------------
 * Symfony flex with Symfony 3.4|4.0
 * i18n Doctrine strategy of your choice
-  * [KnpDoctrineExtension](https://github.com/KnpLabs/DoctrineBehaviors#translatable)
+  * [KnpLabs/DoctrineBehaviors](https://github.com/KnpLabs/DoctrineBehaviors#translatable) with `knplabs/doctrine-behaviors`
+  * [Atlantic18/DoctrineExtensions](https://github.com/Atlantic18/DoctrineExtensions/blob/v2.4.x/doc/translatable.md) with `stof/doctrine-extensions-bundle`
   * [A2lixI18nDoctrineBundle](https://github.com/a2lix/I18nDoctrineBundle) [Deprecated - will be removed from bundle in v.4.0.6]
   * [PrezentDoctrineTranslatableBundle](https://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md) [Deprecated - will be removed from bundle in v.4.0.6]
 

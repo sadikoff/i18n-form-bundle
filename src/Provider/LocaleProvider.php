@@ -1,17 +1,13 @@
 <?php
 
-/*
- * This file is part of A2lix projects.
+namespace Koff\Bundle\I18nFormBundle\Provider;
+
+/**
+ * Class LocaleProvider.
  *
- * (c) Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
  */
-
-namespace Koff\Bundle\I18nFormBundle\Locale;
-
-class DefaultProvider implements LocaleProviderInterface
+class LocaleProvider implements LocaleProviderInterface
 {
     /** @var array */
     protected $locales;
@@ -31,10 +27,10 @@ class DefaultProvider implements LocaleProviderInterface
     {
         if (!in_array($defaultLocale, $locales, true)) {
             if (count($locales)) {
-                throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `koff_i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
+                throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
             }
 
-            throw new \InvalidArgumentException(sprintf('No locales were configured, but expected at least the default locale `%s`. Perhaps you need to add it to your `koff_i18n_form.locales` bundle configuration?', $defaultLocale));
+            throw new \InvalidArgumentException(sprintf('No locales were configured, but expected at least the default locale `%s`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale));
         }
 
         if (array_diff($requiredLocales, $locales)) {

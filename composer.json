@@ -41,8 +41,7 @@
     },
     "suggest": {
         "knplabs/doctrine-behaviors": "For Knp strategy",
-        "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
-        "prezent/doctrine-translatable-bundle": "For Prezent strategy"
+        "stof/doctrine-extensions-bundle": "For Atlantic18/DoctrineExtensions"
     },
     "config": {
         "preferred-install": {

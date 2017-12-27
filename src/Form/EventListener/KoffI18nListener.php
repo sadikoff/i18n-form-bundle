@@ -6,6 +6,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+/**
+ * Class KoffI18nListener.
+ *
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
 abstract class KoffI18nListener implements EventSubscriberInterface
 {
     /**

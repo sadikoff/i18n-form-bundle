@@ -12,21 +12,15 @@
 namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
 use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 
+/**
+ * Class TranslationsFormsListener.
+ *
+ * @author David ALLIX
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
 class TranslationsFormsListener extends KoffI18nListener
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [
-            FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT => 'submit',
-        ];
-    }
-
     /**
      * @param FormEvent $event
      */

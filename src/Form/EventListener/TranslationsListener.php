@@ -1,22 +1,18 @@
 <?php
 
-/*
- * This file is part of A2lix projects.
- *
- * (c) David ALLIX
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
 use Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 
+/**
+ * Class TranslationsListener.
+ *
+ * @author David ALLIX
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
 class TranslationsListener extends KoffI18nListener
 {
     /** @var FormManipulatorInterface */
@@ -28,17 +24,6 @@ class TranslationsListener extends KoffI18nListener
     public function __construct(FormManipulatorInterface $formManipulator)
     {
         $this->formManipulator = $formManipulator;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [
-            FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT => 'submit',
-        ];
     }
 
     /**

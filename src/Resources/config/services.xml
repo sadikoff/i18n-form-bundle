@@ -8,7 +8,7 @@
         <defaults public="false" />
 
         <!-- Locale -->
-        <service id="koff_i18n_form.locale_provider" class="Koff\Bundle\I18nFormBundle\Locale\DefaultProvider">
+        <service id="koff_i18n_form.locale_provider" class="Koff\Bundle\I18nFormBundle\Provider\LocaleProvider">
             <argument/>
             <argument/>
             <argument/>
@@ -16,12 +16,12 @@
         <!-- /Locale -->
 
         <!-- Manipulator -->
-        <service id="koff_i18n_form.doctrine_info" class="Koff\Bundle\I18nFormBundle\ObjectInfo\DoctrineInfo">
+        <service id="koff_i18n_form.fields_extractor" class="Koff\Bundle\I18nFormBundle\Extractor\DoctrineEntityFieldsExtractor">
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
         </service>
 
-        <service id="koff_i18n_form.form_manipulator" class="Koff\Bundle\I18nFormBundle\Form\Manipulator\DefaultManipulator">
-            <argument type="service" id="koff_i18n_form.doctrine_info" />
+        <service id="koff_i18n_form.form_manipulator" class="Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulator">
+            <argument type="service" id="koff_i18n_form.fields_extractor" />
             <argument type="collection"/>
         </service>
         <!-- /Manipulator -->

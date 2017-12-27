@@ -1,12 +1,18 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\ObjectInfo;
+namespace Koff\Bundle\I18nFormBundle\Extractor;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 
-class DoctrineInfo implements ObjectInfoInterface
+/**
+ * Class DoctrineEntityFieldsExtractor.
+ *
+ * @author David ALLIX
+ * @author Sadicov Vladimir <sadikoff@gmail.com>
+ */
+class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
 {
     /** @var EntityManagerInterface */
     private $entityManager;

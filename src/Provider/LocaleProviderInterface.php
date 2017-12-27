@@ -1,16 +1,12 @@
 <?php
 
-/*
- * This file is part of A2lix projects.
+namespace Koff\Bundle\I18nFormBundle\Provider;
+
+/**
+ * Interface LocaleProviderInterface.
  *
- * (c) Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk> . Reiss Clothing Ltd.
  */
-
-namespace Koff\Bundle\I18nFormBundle\Locale;
-
 interface LocaleProviderInterface
 {
     /**
