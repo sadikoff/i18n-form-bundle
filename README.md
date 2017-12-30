@@ -1,5 +1,5 @@
-KoffI18nFormBundle
-==================
+koff/i18n-form-bundle
+=====================
 
 [![Build Status](https://travis-ci.org/sadikoff/i18n-form-bundle.svg?branch=master)](https://travis-ci.org/sadikoff/i18n-form-bundle)
 [![Latest Stable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/stable.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
@@ -17,8 +17,6 @@ Requirements
 * i18n Doctrine strategy of your choice
   * [KnpLabs/DoctrineBehaviors](https://github.com/KnpLabs/DoctrineBehaviors#translatable) with `knplabs/doctrine-behaviors`
   * [Atlantic18/DoctrineExtensions](https://github.com/Atlantic18/DoctrineExtensions/blob/v2.4.x/doc/translatable.md) with `stof/doctrine-extensions-bundle`
-  * [A2lixI18nDoctrineBundle](https://github.com/a2lix/I18nDoctrineBundle) [Deprecated - will be removed from bundle in v.4.0.6]
-  * [PrezentDoctrineTranslatableBundle](https://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md) [Deprecated - will be removed from bundle in v.4.0.6]
 
 Installation
 ------------
@@ -40,8 +38,8 @@ Full configuration example
 # config/packages/i18n_form.yaml
 i18n_form:
     locales: [en, fr, es, de]
-    default_locale: en
     required_locales: [fr]
+    excluded_fields: ['id', 'locale', 'translatable']
 ```
 
 Usage
