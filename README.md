@@ -8,6 +8,7 @@ koff/i18n-form-bundle
 [![License](https://poser.pugx.org/koff/i18n-form-bundle/license.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/?branch=master)
 [![StyleCI](https://styleci.io/repos/114292466/shield?branch=master)](https://styleci.io/repos/114292466)
+[![Coverage Status](https://coveralls.io/repos/github/sadikoff/i18n-form-bundle/badge.svg?branch=master)](https://coveralls.io/github/sadikoff/i18n-form-bundle?branch=master)
 
 >This bundle is fork of [a2lix/TranslationFormBundle](https://github.com/a2lix/TranslationFormBundle), reorganized and optimized to work with symfony flex 
 
