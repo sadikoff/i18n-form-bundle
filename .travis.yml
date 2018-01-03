@@ -23,8 +23,12 @@ env:
 install:
     - composer --prefer-dist install
     - ./vendor/bin/simple-phpunit install
+    - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+    - chmod +x coveralls.phar
+    - php coveralls.phar --version
+
 
 script: ./vendor/bin/simple-phpunit
 
 after_success:
-    - coveralls
+    - php coveralls.phar -v
