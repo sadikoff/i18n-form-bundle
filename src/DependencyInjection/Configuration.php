@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
         $this->localesSection($rootNode);
         $this->requiredLocalesSection($rootNode);
         $this->excludedFieldsSection($rootNode);
+        $this->formThemeSection($rootNode);
 
         return $treeBuilder;
     }
@@ -75,6 +76,16 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(['id', 'locale', 'translatable'])
                     ->scalarPrototype()->end()
                     ->beforeNormalization()->ifString()->then($this->convertStringToArray)->end()
+                ->end()
+        ;
+    }
+
+    private function formThemeSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->scalarNode('form_theme')
+                    ->validate()->ifNotInArray(['bootstrap_3', 'bootstrap_4'])->thenUnset()->end()
                 ->end()
         ;
     }

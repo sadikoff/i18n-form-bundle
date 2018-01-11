@@ -26,14 +26,6 @@ Installation
 
 Configuration
 -------------
-Add form_theme to `twig` configuration
-```yaml
-# config/packages/twig.yaml
-twig:
-    form_themes:
-        - '@I18nForm/bootstrap_4_form.html.twig'
-```
-
 Full configuration example
 ```yaml
 # config/packages/i18n_form.yaml
@@ -41,6 +33,7 @@ i18n_form:
     locales: [en, fr, es, de]
     required_locales: [fr]
     excluded_fields: ['id', 'locale', 'translatable']
+    form_theme: 'bootstrap_3' # you can use 'bootstrap_3' or 'bootstrap_4' form template
 ```
 
 Usage
@@ -125,13 +118,6 @@ $builder->add('medias', TranslatedEntityType::class, [
 * [1] Path of the translatable class
 * [2] Property/Method of the translatable class that will be display
 * [3] Common options of the 'entity' symfony2 form type (multiple, ...)
-
-#### Assets
->WARNING! Not usable.
-
-If you already use Twitter Bootstrap, you only need to enable the Tab functionality and use `a2lix_translation_bootstrap.js`.
-
-Otherwise, you will still need jquery, and you use `a2lix_translation_default.js` and `a2lix_translation_default.css`.
 
 Credits
 =======
