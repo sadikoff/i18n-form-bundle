@@ -53,6 +53,28 @@ class I18nFormExtensionTest extends TestCase
         $this->assertTrue(($configuration->hasDefinition('koff_i18n_form.form_manipulator') ?: $configuration->hasAlias('koff_i18n_form.form_manipulator')));
     }
 
+    public function testDefaultConfgiLoad()
+    {
+        $configuration = $this->getTestContainer();
+        $loader = new I18nFormExtension();
+        $config = $this->getDefaultConfig();
+        $loader->load($config, $configuration);
+
+        $registeredResources = $configuration->getParameter('twig.form.resources');
+        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+    }
+
+    public function testDefaultConfgiLoadWithTwigPredefined()
+    {
+        $configuration = $this->getTestContainerWithTwigResource();
+        $loader = new I18nFormExtension();
+        $config = $this->getDefaultConfig();
+        $loader->load($config, $configuration);
+
+        $registeredResources = $configuration->getParameter('twig.form.resources');
+        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+    }
+
     /**
      * getEmptyConfig.
      *
@@ -75,6 +97,17 @@ EOF;
         $container = new ContainerBuilder();
         $container->setParameter('kernel.default_locale', 'en');
         $container->setParameter('twig.form.resources', []);
+
+        return $container;
+    }
+
+    private function getTestContainerWithTwigResource()
+    {
+        $container = new ContainerBuilder();
+        $container->setParameter('kernel.default_locale', 'en');
+        $container->setParameter('twig.form.resources', [
+            '@I18nForm/bootstrap_4_form.html.twig'
+        ]);
 
         return $container;
     }
