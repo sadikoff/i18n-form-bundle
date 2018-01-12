@@ -37,6 +37,7 @@
     "require-dev": {
         "symfony/validator": "^3.4|^4.0",
         "symfony/phpunit-bridge": "^3.4|^4.0",
+        "symfony/yaml": "^3.4|^4.0",
         "friendsofphp/php-cs-fixer": "^2.8"
     },
     "suggest": {

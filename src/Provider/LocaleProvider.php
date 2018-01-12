@@ -23,14 +23,14 @@ class LocaleProvider implements LocaleProviderInterface
      * @param string $defaultLocale
      * @param array  $requiredLocales
      */
-    public function __construct(array $locales, $defaultLocale, array $requiredLocales = [])
+    public function __construct(array $locales, string $defaultLocale, array $requiredLocales = [])
     {
-        if (!in_array($defaultLocale, $locales, true)) {
-            if (count($locales)) {
-                throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
-            }
+        if (empty($locales)) {
+            throw new \InvalidArgumentException('No locales were configured, but expected at least one locale. Check `i18n_form.locales` bundle configuration!');
+        }
 
-            throw new \InvalidArgumentException(sprintf('No locales were configured, but expected at least the default locale `%s`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale));
+        if (!in_array($defaultLocale, $locales, true)) {
+            throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
         }
 
         if (array_diff($requiredLocales, $locales)) {

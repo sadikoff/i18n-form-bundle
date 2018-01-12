@@ -13,7 +13,6 @@ namespace Koff\Bundle\I18nFormBundle\Tests\Form\Type;
 
 use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
 use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\Product;
-use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\ProductTranslation;
 use Koff\Bundle\I18nFormBundle\Tests\Form\TypeTestCase;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

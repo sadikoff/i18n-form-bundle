@@ -9,16 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\I18nFormBundle\Tests\Locale;
+namespace Koff\Bundle\I18nFormBundle\Tests\Provider;
 
 use PHPUnit\Framework\TestCase;
 use Koff\Bundle\I18nFormBundle\Provider\LocaleProvider;
 
-class DefaultProviderTest extends TestCase
+class LocaleProviderTest extends TestCase
 {
+    /** @var array */
     protected $locales;
+    /** @var string */
     protected $defaultLocale;
+    /** @var array */
     protected $requiredLocales;
+    /** @var LocaleProvider */
     protected $provider;
 
     public function setUp()
@@ -30,45 +34,37 @@ class DefaultProviderTest extends TestCase
         $this->provider = new LocaleProvider($this->locales, $this->defaultLocale, $this->requiredLocales);
     }
 
-    public function testDefaultLocaleIsInLocales()
+    public function testIsLocalesConfigured()
     {
-        $classname = 'Koff\Bundle\I18nFormBundle\Provider\LocaleProvider';
-
-        // Get mock, without the constructor being called
-        $mock = $this->getMockBuilder($classname)
-            ->disableOriginalConstructor()
-            ->getMock();
-
         // set expectations for constructor calls
-        $this->expectException(
-            'InvalidArgumentException', 'Default locale `de` not found within the configured locales `[es,en]`.'
-                . ' Perhaps you need to add it to your `koff_i18n_form.locales` bundle configuration?'
-        );
+        $this->expectException('InvalidArgumentException');
 
         // now call the constructor
-        $reflectedClass = new \ReflectionClass($classname);
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
         $constructor = $reflectedClass->getConstructor();
-        $constructor->invoke($mock, ['es', 'en'], 'de', []);
+        $constructor->invoke($this->getLocaleProviderMock(), [], 'de', []);
+    }
+
+    public function testDefaultLocaleIsInLocales()
+    {
+        // set expectations for constructor calls
+        $this->expectException('InvalidArgumentException');
+
+        // now call the constructor
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
+        $constructor = $reflectedClass->getConstructor();
+        $constructor->invoke($this->getLocaleProviderMock(), ['es', 'en'], 'de', []);
     }
 
     public function testRequiredLocaleAreInLocales()
     {
-        $classname = 'Koff\Bundle\I18nFormBundle\Provider\LocaleProvider';
-
-        // Get mock, without the constructor being called
-        $mock = $this->getMockBuilder($classname)
-            ->disableOriginalConstructor()
-            ->getMock();
-
         // set expectations for constructor calls
-        $this->expectException(
-            'InvalidArgumentException', 'Required locales should be contained in locales'
-        );
+        $this->expectException('InvalidArgumentException');
 
         // now call the constructor
-        $reflectedClass = new \ReflectionClass($classname);
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
         $constructor = $reflectedClass->getConstructor();
-        $constructor->invoke($mock, ['es', 'en'], 'en', ['en', 'pt']);
+        $constructor->invoke($this->getLocaleProviderMock(), ['es', 'en'], 'en', ['en', 'pt']);
     }
 
     public function testGetLocales()
@@ -86,11 +82,18 @@ class DefaultProviderTest extends TestCase
         $this->assertSame($this->defaultLocale, $expected);
     }
 
-    public function getRequiredLocales()
+    public function testGetRequiredLocales()
     {
-        $expected = $this->provider->getDefaultLocale();
+        $expected = $this->provider->getRequiredLocales();
         $requiredLocales = $this->requiredLocales;
 
         $this->assertSame(array_diff($expected, $requiredLocales), array_diff($requiredLocales, $expected));
+    }
+
+    private function getLocaleProviderMock()
+    {
+        return $this->getMockBuilder('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider')
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 }
