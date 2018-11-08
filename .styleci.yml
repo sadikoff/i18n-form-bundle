@@ -1,7 +1,5 @@
 preset: symfony
 
-linting: true
-
 enabled:
   - ordered_use
   - strict
