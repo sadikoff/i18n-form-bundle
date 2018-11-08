@@ -12,4 +12,6 @@ enabled:
 
 finder:
   exclude:
+    - "config"
+    - "templates"
     - "tests"
