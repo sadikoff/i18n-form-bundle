@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
+namespace Koff\I18nFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,7 +21,7 @@ class I18nFormExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(dirname(__DIR__).'/Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__) . '/../config'));
         $loader->load('services.xml');
 
         $this->defineLocaleProvider($config, $container);

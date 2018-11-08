@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
+namespace Koff\I18nFormBundle\Form\EventListener;
 
 use Symfony\Component\Form\FormEvent;
 

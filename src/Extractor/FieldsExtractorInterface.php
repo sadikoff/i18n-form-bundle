@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\Extractor;
+namespace Koff\I18nFormBundle\Extractor;
 
 /**
  * Interface EntityInfoInterface.

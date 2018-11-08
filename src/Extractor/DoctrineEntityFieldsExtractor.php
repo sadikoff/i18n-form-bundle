@@ -1,10 +1,10 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\Extractor;
+namespace Koff\I18nFormBundle\Extractor;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
+use Koff\I18nFormBundle\Form\Type\AutoFormType;
 
 /**
  * Class DoctrineEntityFieldsExtractor.

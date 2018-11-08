@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle;
+namespace Koff\I18nFormBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

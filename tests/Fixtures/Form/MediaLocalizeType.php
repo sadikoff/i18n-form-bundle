@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\I18nFormBundle\Tests\Fixtures\Form;
+namespace Koff\I18nFormBundle\Tests\Fixtures\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +28,7 @@ class MediaLocalizeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\MediaLocalize',
+            'data_class' => 'Koff\I18nFormBundle\Tests\Fixtures\Entity\MediaLocalize',
         ]);
     }
 }

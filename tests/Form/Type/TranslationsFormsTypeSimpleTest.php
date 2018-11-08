@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\I18nFormBundle\Tests\Form\Type;
+namespace Koff\I18nFormBundle\Tests\Form\Type;
 
-use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType;
-use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\MediaLocalize;
-use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Entity\Product;
-use Koff\Bundle\I18nFormBundle\Tests\Fixtures\Form\MediaLocalizeType;
-use Koff\Bundle\I18nFormBundle\Tests\Form\TypeTestCase;
+use Koff\I18nFormBundle\Form\Type\TranslationsFormsType;
+use Koff\I18nFormBundle\Tests\Fixtures\Entity\MediaLocalize;
+use Koff\I18nFormBundle\Tests\Fixtures\Entity\Product;
+use Koff\I18nFormBundle\Tests\Fixtures\Form\MediaLocalizeType;
+use Koff\I18nFormBundle\Tests\Form\TypeTestCase;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\PreloadedExtension;

@@ -21,43 +21,41 @@
         },
         {
             "name": "Sadicov Vladimir",
-            "homepage": "http://xtech.su"
+            "homepage": "https://koff.pro"
         }
     ],
     "require": {
         "php": "^7.0.8",
-        "doctrine/doctrine-bundle": "^1.6.10",
-        "doctrine/orm": "^2.5",
-        "symfony/config": "~3.4|~4.0",
-        "symfony/dependency-injection": "~3.4|~4.0",
-        "symfony/form": "~3.4|~4.0",
-        "symfony/http-kernel": "~3.4|~4.0",
-        "symfony/twig-bundle": "~3.4|~4.0"
+        "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/orm": "^2.3",
+        "symfony/config": "^3.4|^4.0",
+        "symfony/dependency-injection": "^3.4|^4.0",
+        "symfony/form": "^3.4|^4.0",
+        "symfony/http-kernel": "^3.4|^4.0",
+        "symfony/twig-bundle": "^3.4|^4.0"
     },
     "require-dev": {
         "symfony/validator": "^3.4|^4.0",
         "symfony/phpunit-bridge": "^3.4|^4.0",
         "symfony/yaml": "^3.4|^4.0",
-        "friendsofphp/php-cs-fixer": "^2.8"
+        "friendsofphp/php-cs-fixer": "^2.13"
     },
     "suggest": {
         "knplabs/doctrine-behaviors": "For Knp strategy",
         "stof/doctrine-extensions-bundle": "For Atlantic18/DoctrineExtensions"
     },
     "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
+        "preferred-install":"dist",
         "sort-packages": true
     },
     "autoload": {
         "psr-4": {
-            "Koff\\Bundle\\I18nFormBundle\\": "src/"
+            "Koff\\I18nFormBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Koff\\Bundle\\I18nFormBundle\\Tests\\": "tests/"
+            "Koff\\I18nFormBundle\\Tests\\": "tests/"
         }
     },
     "extra": {

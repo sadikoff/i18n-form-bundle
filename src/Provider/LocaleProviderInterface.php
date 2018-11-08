@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\Provider;
+namespace Koff\I18nFormBundle\Provider;
 
 /**
  * Interface LocaleProviderInterface.
