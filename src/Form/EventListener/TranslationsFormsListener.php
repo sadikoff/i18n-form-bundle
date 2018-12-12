@@ -34,7 +34,7 @@ class TranslationsFormsListener extends KoffI18nListener
                 $locale,
                 $formOptions['form_type'],
                 $formOptions['form_options'] + [
-                    'required' => in_array($locale, $formOptions['required_locales'], true),
+                    'required' => \in_array($locale, $formOptions['required_locales'], true),
                 ]
             );
         }

@@ -21,7 +21,7 @@ class I18nFormExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__) . '/../config'));
+        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__).'/../config'));
         $loader->load('services.xml');
 
         $this->defineLocaleProvider($config, $container);

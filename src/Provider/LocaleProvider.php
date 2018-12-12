@@ -29,7 +29,7 @@ class LocaleProvider implements LocaleProviderInterface
             throw new \InvalidArgumentException('No locales were configured, but expected at least one locale. Check `i18n_form.locales` bundle configuration!');
         }
 
-        if (!in_array($defaultLocale, $locales, true)) {
+        if (!\in_array($defaultLocale, $locales, true)) {
             throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
         }
 
