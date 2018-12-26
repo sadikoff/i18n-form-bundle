@@ -13,5 +13,5 @@ interface FormManipulatorInterface
      *
      * @return array
      */
-    public function getFieldsConfig(FormInterface $form);
+    public function getFieldsConfig(FormInterface $form): array;
 }

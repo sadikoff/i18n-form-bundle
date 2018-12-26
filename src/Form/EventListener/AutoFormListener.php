@@ -23,7 +23,7 @@ class AutoFormListener implements EventSubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
@@ -39,7 +39,7 @@ class AutoFormListener implements EventSubscriberInterface
 
         $fieldsOptions = $this->formManipulator->getFieldsConfig($form);
         foreach ($fieldsOptions as $fieldName => $fieldConfig) {
-            $fieldType = isset($fieldConfig['field_type']) ? $fieldConfig['field_type'] : null;
+            $fieldType = $fieldConfig['field_type'] ?? null;
             unset($fieldConfig['field_type']);
 
             $form->add($fieldName, $fieldType, $fieldConfig);

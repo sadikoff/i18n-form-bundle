@@ -33,7 +33,7 @@ class FormManipulator implements FormManipulatorInterface
     /**
      * {@inheritdoc}
      */
-    public function getFieldsConfig(FormInterface $form)
+    public function getFieldsConfig(FormInterface $form): array
     {
         $class = $this->getDataClass($form);
         $formOptions = $form->getConfig()->getOptions();
@@ -107,7 +107,7 @@ class FormManipulator implements FormManipulatorInterface
      *
      * @return array
      */
-    private function filterObjectFields(array $objectFieldsConfig, array $formExcludedFields)
+    private function filterObjectFields(array $objectFieldsConfig, array $formExcludedFields): array
     {
         $excludedFields = array_fill_keys(array_merge($this->globalExcludedFields, $formExcludedFields), []);
 

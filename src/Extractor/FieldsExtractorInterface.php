@@ -11,5 +11,5 @@ interface FieldsExtractorInterface
 {
     public function getFieldsConfig($class);
 
-    public function getAssociationTargetClass($class, $fieldName);
+    public function getAssociationTargetClass(string $class, string $fieldName): string;
 }

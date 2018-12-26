@@ -45,7 +45,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocales()
+    public function getLocales(): array
     {
         return $this->locales;
     }
@@ -53,7 +53,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getDefaultLocale()
+    public function getDefaultLocale(): string
     {
         return $this->defaultLocale;
     }
@@ -61,7 +61,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequiredLocales()
+    public function getRequiredLocales(): array
     {
         return $this->requiredLocales;
     }

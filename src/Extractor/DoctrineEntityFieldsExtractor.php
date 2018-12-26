@@ -30,7 +30,7 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
      *
      * @return array
      */
-    public function getFieldsConfig($class)
+    public function getFieldsConfig($class): array
     {
         $fieldsConfig = [];
 
@@ -53,7 +53,7 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
      *
      * @return array
      */
-    private function getAssocsConfig(ClassMetadata $metadata, $assocNames)
+    private function getAssocsConfig(ClassMetadata $metadata, $assocNames): array
     {
         $assocsConfigs = [];
 
@@ -68,14 +68,7 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
         return $assocsConfigs;
     }
 
-    /**
-     * @param string        $class
-     * @param ClassMetadata $metadata
-     * @param string        $assocName
-     *
-     * @return array
-     */
-    private function generateConfig($class, ClassMetadata $metadata, $assocName)
+    private function generateConfig(string $class, ClassMetadata $metadata, string $assocName): array
     {
         if ($metadata->isSingleValuedAssociation($assocName)) {
             return [
@@ -96,19 +89,12 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
         ];
     }
 
-    /**
-     * @param string $class
-     * @param string $fieldName
-     *
-     * @throws \Exception
-     *
-     * @return string
-     */
-    public function getAssociationTargetClass($class, $fieldName)
+    public function getAssociationTargetClass(string $class, string $fieldName): string
     {
         $metadata = $this->entityManager->getClassMetadata($class);
 
         if (!$metadata->hasAssociation($fieldName)) {
+            //TODO: Create Customized Exception
             throw new \Exception(
                 sprintf('Unable to find the association target class of "%s" in %s.', $fieldName, $class)
             );

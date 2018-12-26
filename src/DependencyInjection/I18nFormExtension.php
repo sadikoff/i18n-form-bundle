@@ -12,10 +12,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class I18nFormExtension extends Extension
 {
-    /**
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = $this->getConfiguration($configs, $container);

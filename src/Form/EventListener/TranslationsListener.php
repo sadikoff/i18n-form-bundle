@@ -55,7 +55,7 @@ class TranslationsListener extends KoffI18nListener
      *
      * @return string
      */
-    private function getTranslationClass(FormInterface $form)
+    private function getTranslationClass(FormInterface $form): string
     {
         do {
             $translatableClass = $form->getConfig()->getDataClass();
@@ -80,7 +80,7 @@ class TranslationsListener extends KoffI18nListener
      *
      * @return array
      */
-    public function getFieldsOptions(FormInterface $form, array $formOptions)
+    public function getFieldsOptions(FormInterface $form, array $formOptions): array
     {
         $fieldsOptions = array_fill_keys($formOptions['locales'], $this->formManipulator->getFieldsConfig($form));
 
