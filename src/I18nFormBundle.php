@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class I18nFormBundle.
+ * @author Vladimir Sadicov <sadikoff@gmail.com>
  */
 class I18nFormBundle extends Bundle
 {
