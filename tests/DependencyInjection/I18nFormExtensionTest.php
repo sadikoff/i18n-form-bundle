@@ -1,8 +1,8 @@
 <?php
 
-namespace Koff\I18nFormBundle\Tests\DependencyInjection;
+namespace Koff\Bundle\I18nFormBundle\Tests\DependencyInjection;
 
-use Koff\I18nFormBundle\DependencyInjection\I18nFormExtension;
+use Koff\Bundle\I18nFormBundle\DependencyInjection\I18nFormExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;

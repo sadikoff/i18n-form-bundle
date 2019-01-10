@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\I18nFormBundle\Tests\Form;
+namespace Koff\Bundle\I18nFormBundle\Tests\Form;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 
 abstract class TypeTestCase extends BaseTypeTestCase
 {
-    /** @var \Koff\I18nFormBundle\Form\Manipulator\FormManipulator */
+    /** @var \Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulator */
     protected $defaultFormManipulator;
 
     protected function setUp()
@@ -55,31 +55,31 @@ abstract class TypeTestCase extends BaseTypeTestCase
 
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . '/../Fixtures/Entity'], true, null, null, false);
         $entityManager = EntityManager::create(['driver' => 'pdo_sqlite'], $config);
-        $doctrineInfo = new \Koff\I18nFormBundle\Extractor\DoctrineEntityFieldsExtractor($entityManager);
+        $doctrineInfo = new \Koff\Bundle\I18nFormBundle\Extractor\DoctrineEntityFieldsExtractor($entityManager);
 
-        return $this->defaultFormManipulator = new \Koff\I18nFormBundle\Form\Manipulator\FormManipulator($doctrineInfo, ['id', 'locale', 'translatable']);
+        return $this->defaultFormManipulator = new \Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulator($doctrineInfo, ['id', 'locale', 'translatable']);
     }
 
     protected function getConfiguredAutoFormType()
     {
-        $AutoFormListener = new \Koff\I18nFormBundle\Form\EventListener\AutoFormListener($this->getDefaultFormManipulator());
+        $AutoFormListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\AutoFormListener($this->getDefaultFormManipulator());
 
-        return new \Koff\I18nFormBundle\Form\Type\AutoFormType($AutoFormListener);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType($AutoFormListener);
     }
 
     protected function getConfiguredTranslationsType($locales, $defaultLocale, $requiredLocales)
     {
-        $translationsListener = new \Koff\I18nFormBundle\Form\EventListener\TranslationsListener($this->getDefaultFormManipulator());
-        $localProvider = new \Koff\I18nFormBundle\Provider\LocaleProvider($locales, $defaultLocale, $requiredLocales);
+        $translationsListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsListener($this->getDefaultFormManipulator());
+        $localProvider = new \Koff\Bundle\I18nFormBundle\Provider\LocaleProvider($locales, $defaultLocale, $requiredLocales);
 
-        return new \Koff\I18nFormBundle\Form\Type\TranslationsType($translationsListener, $localProvider);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType($translationsListener, $localProvider);
     }
 
     protected function getConfiguredTranslationsFormsType($locales, $defaultLocale, $requiredLocales)
     {
-        $translationsFormsListener = new \Koff\I18nFormBundle\Form\EventListener\TranslationsFormsListener();
-        $localProvider = new \Koff\I18nFormBundle\Provider\LocaleProvider($locales, $defaultLocale, $requiredLocales);
+        $translationsFormsListener = new \Koff\Bundle\I18nFormBundle\Form\EventListener\TranslationsFormsListener();
+        $localProvider = new \Koff\Bundle\I18nFormBundle\Provider\LocaleProvider($locales, $defaultLocale, $requiredLocales);
 
-        return new \Koff\I18nFormBundle\Form\Type\TranslationsFormsType($translationsFormsListener, $localProvider);
+        return new \Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType($translationsFormsListener, $localProvider);
     }
 }

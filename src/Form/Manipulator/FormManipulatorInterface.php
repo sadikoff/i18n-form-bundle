@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\I18nFormBundle\Form\Manipulator;
+namespace Koff\Bundle\I18nFormBundle\Form\Manipulator;
 
 use Symfony\Component\Form\FormInterface;
 
