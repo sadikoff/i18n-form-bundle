@@ -1,8 +1,8 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\Tests\DependencyInjection;
+namespace Koff\I18nFormBundle\Tests\DependencyInjection;
 
-use Koff\Bundle\I18nFormBundle\DependencyInjection\I18nFormExtension;
+use Koff\I18nFormBundle\DependencyInjection\I18nFormExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
@@ -61,7 +61,7 @@ class I18nFormExtensionTest extends TestCase
         $loader->load($config, $configuration);
 
         $registeredResources = $configuration->getParameter('twig.form.resources');
-        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+        $this->assertEquals(['@KoffI18nForm/bootstrap_4_form.html.twig'], $registeredResources);
     }
 
     public function testDefaultConfgiLoadWithTwigPredefined()
@@ -72,7 +72,7 @@ class I18nFormExtensionTest extends TestCase
         $loader->load($config, $configuration);
 
         $registeredResources = $configuration->getParameter('twig.form.resources');
-        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+        $this->assertEquals(['@KoffI18nForm/bootstrap_4_form.html.twig'], $registeredResources);
     }
 
     /**
@@ -106,7 +106,7 @@ EOF;
         $container = new ContainerBuilder();
         $container->setParameter('kernel.default_locale', 'en');
         $container->setParameter('twig.form.resources', [
-            '@I18nForm/bootstrap_4_form.html.twig'
+            '@KoffI18nForm/bootstrap_4_form.html.twig'
         ]);
 
         return $container;

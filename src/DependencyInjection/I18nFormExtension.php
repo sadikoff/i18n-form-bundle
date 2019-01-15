@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
+namespace Koff\I18nFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -49,12 +49,12 @@ class I18nFormExtension extends Extension
         array_walk(
             $twigFormResources,
             function ($value) use (&$isFormThemeRegistered) {
-                $isFormThemeRegistered = false !== stripos($value, '@I18nForm/');
+                $isFormThemeRegistered = false !== stripos($value, '@KoffI18nForm/');
             }
         );
 
         if (!$isFormThemeRegistered) {
-            $twigFormResources[] = '@I18nForm/'.$config['form_theme'].'_form.html.twig';
+            $twigFormResources[] = '@KoffI18nForm/'.$config['form_theme'].'_form.html.twig';
             $container->setParameter('twig.form.resources', $twigFormResources);
         }
     }

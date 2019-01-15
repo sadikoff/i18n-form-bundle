@@ -50,12 +50,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Koff\\Bundle\\I18nFormBundle\\": "src/"
+            "Koff\\I18nFormBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Koff\\Bundle\\I18nFormBundle\\Tests\\": "tests/"
+            "Koff\\I18nFormBundle\\Tests\\": "tests/"
         }
     },
     "extra": {

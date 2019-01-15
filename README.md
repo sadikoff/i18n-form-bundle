@@ -42,7 +42,7 @@ Usage
 Basic example
 
 ```php
-use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
+use Koff\I18nFormBundle\Form\Type\TranslationsType;
 //...
 $builder->add('translations', TranslationsType::class);
 ```
@@ -50,7 +50,7 @@ $builder->add('translations', TranslationsType::class);
 Advanced example
 
 ```php
-use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
+use Koff\I18nFormBundle\Form\Type\TranslationsType;
 //...
 $builder->add('translations', TranslationsType::class, [
     'locales' => ['en', 'fr', 'es', 'de'],          // [1]
@@ -85,7 +85,7 @@ Additional
 A different approach for entities which don't share fields untranslated. No strategy used here, only a locale field in your entity.
 
 ```php
-use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType;
+use Koff\I18nFormBundle\Form\Type\TranslationsFormsType;
 //...
 $builder->add('translations', TranslationsFormsType::class, [
     'locales' => ['en', 'fr', 'es', 'de'],   // [1]
@@ -106,7 +106,7 @@ $builder->add('translations', TranslationsFormsType::class, [
 Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations
 
 ```php
-use Koff\Bundle\I18nFormBundle\Form\Type\TranslatedEntityType;
+use Koff\I18nFormBundle\Form\Type\TranslatedEntityType;
 //...
 $builder->add('medias', TranslatedEntityType::class, [
     'class' => 'App\Entity\Media',      // [1 - Mandatory]

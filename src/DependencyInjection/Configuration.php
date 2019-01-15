@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\DependencyInjection;
+namespace Koff\I18nFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -20,10 +20,10 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('i18n_form');
+        $treeBuilder = new TreeBuilder('koff_i18n_form');
         $rootNode = method_exists($treeBuilder, 'getRootNode')
             ? $treeBuilder->getRootNode()
-            : $treeBuilder->root('i18n_form');
+            : $treeBuilder->root('koff_i18n_form');
 
         $this->convertStringToArray = function ($v) {
             return preg_split('/\s*[,|]\s*/', $v);

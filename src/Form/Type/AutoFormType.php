@@ -1,8 +1,8 @@
 <?php
 
-namespace Koff\Bundle\I18nFormBundle\Form\Type;
+namespace Koff\I18nFormBundle\Form\Type;
 
-use Koff\Bundle\I18nFormBundle\Form\EventListener\AutoFormListener;
+use Koff\I18nFormBundle\Form\EventListener\AutoFormListener;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
