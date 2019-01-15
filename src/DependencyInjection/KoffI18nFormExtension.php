@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * Class I18nFormExtension.
  */
-class I18nFormExtension extends Extension
+class KoffI18nFormExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {

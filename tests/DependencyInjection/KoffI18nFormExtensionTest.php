@@ -2,7 +2,7 @@
 
 namespace Koff\I18nFormBundle\Tests\DependencyInjection;
 
-use Koff\I18nFormBundle\DependencyInjection\I18nFormExtension;
+use Koff\I18nFormBundle\DependencyInjection\KoffI18NFormExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Parser;
  *
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
-class I18nFormExtensionTest extends TestCase
+class KoffI18NFormExtensionTest extends TestCase
 {
     /** @var ContainerBuilder */
     protected $configuration;
@@ -27,7 +27,7 @@ class I18nFormExtensionTest extends TestCase
      */
     public function testUserLoadThrowsExceptionUnlessLocaleIsEmpty()
     {
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18NFormExtension();
         $config = $this->getDefaultConfig();
         $config['i18n_form']['locales'] = [];
         $loader->load($config, $this->getTestContainer());
@@ -36,7 +36,7 @@ class I18nFormExtensionTest extends TestCase
     public function testDefineLocaleProvider()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18NFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -46,7 +46,7 @@ class I18nFormExtensionTest extends TestCase
     public function testDefineFormManipulator()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18NFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -56,7 +56,7 @@ class I18nFormExtensionTest extends TestCase
     public function testDefaultConfgiLoad()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18NFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -67,7 +67,7 @@ class I18nFormExtensionTest extends TestCase
     public function testDefaultConfgiLoadWithTwigPredefined()
     {
         $configuration = $this->getTestContainerWithTwigResource();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18NFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
