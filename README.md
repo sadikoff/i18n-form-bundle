@@ -42,7 +42,7 @@ Usage
 Basic example
 
 ```php
-use Koff\I18nFormBundle\Form\Type\TranslationsType;
+use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
 //...
 $builder->add('translations', TranslationsType::class);
 ```
@@ -50,7 +50,7 @@ $builder->add('translations', TranslationsType::class);
 Advanced example
 
 ```php
-use Koff\I18nFormBundle\Form\Type\TranslationsType;
+use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsType;
 //...
 $builder->add('translations', TranslationsType::class, [
     'locales' => ['en', 'fr', 'es', 'de'],          // [1]
