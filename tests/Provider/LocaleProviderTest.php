@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\I18nFormBundle\Tests\Provider;
+namespace Koff\Bundle\I18nFormBundle\Tests\Provider;
 
 use PHPUnit\Framework\TestCase;
-use Koff\I18nFormBundle\Provider\LocaleProvider;
+use Koff\Bundle\I18nFormBundle\Provider\LocaleProvider;
 
 class LocaleProviderTest extends TestCase
 {
@@ -40,7 +40,7 @@ class LocaleProviderTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         // now call the constructor
-        $reflectedClass = new \ReflectionClass('Koff\\I18nFormBundle\\Provider\\LocaleProvider');
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
         $constructor = $reflectedClass->getConstructor();
         $constructor->invoke($this->getLocaleProviderMock(), [], 'de', []);
     }
@@ -51,7 +51,7 @@ class LocaleProviderTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         // now call the constructor
-        $reflectedClass = new \ReflectionClass('Koff\\I18nFormBundle\\Provider\\LocaleProvider');
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
         $constructor = $reflectedClass->getConstructor();
         $constructor->invoke($this->getLocaleProviderMock(), ['es', 'en'], 'de', []);
     }
@@ -62,7 +62,7 @@ class LocaleProviderTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         // now call the constructor
-        $reflectedClass = new \ReflectionClass('Koff\\I18nFormBundle\\Provider\\LocaleProvider');
+        $reflectedClass = new \ReflectionClass('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider');
         $constructor = $reflectedClass->getConstructor();
         $constructor->invoke($this->getLocaleProviderMock(), ['es', 'en'], 'en', ['en', 'pt']);
     }
@@ -92,7 +92,7 @@ class LocaleProviderTest extends TestCase
 
     private function getLocaleProviderMock()
     {
-        return $this->getMockBuilder('Koff\\I18nFormBundle\\Provider\\LocaleProvider')
+        return $this->getMockBuilder('Koff\\Bundle\\I18nFormBundle\\Provider\\LocaleProvider')
             ->disableOriginalConstructor()
             ->getMock();
     }

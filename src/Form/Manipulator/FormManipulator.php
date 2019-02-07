@@ -1,9 +1,9 @@
 <?php
 
-namespace Koff\I18nFormBundle\Form\Manipulator;
+namespace Koff\Bundle\I18nFormBundle\Form\Manipulator;
 
 use Doctrine\Common\Util\ClassUtils;
-use Koff\I18nFormBundle\Extractor\FieldsExtractorInterface;
+use Koff\Bundle\I18nFormBundle\Extractor\FieldsExtractorInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**

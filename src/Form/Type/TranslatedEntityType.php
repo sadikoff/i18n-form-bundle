@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\I18nFormBundle\Form\Type;
+namespace Koff\Bundle\I18nFormBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

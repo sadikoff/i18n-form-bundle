@@ -1,6 +1,6 @@
 <?php
 
-namespace Koff\I18nFormBundle;
+namespace Koff\Bundle\I18nFormBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

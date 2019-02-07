@@ -1,9 +1,9 @@
 <?php
 
-namespace Koff\I18nFormBundle\Form\EventListener;
+namespace Koff\Bundle\I18nFormBundle\Form\EventListener;
 
-use Koff\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
-use Koff\I18nFormBundle\Form\Type\AutoFormType;
+use Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulatorInterface;
+use Koff\Bundle\I18nFormBundle\Form\Type\AutoFormType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
 
