@@ -12,12 +12,12 @@ use Symfony\Component\Yaml\Parser;
  *
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
-class KoffI18NFormExtensionTest extends TestCase
+class KoffI18nFormExtensionTest extends TestCase
 {
     /** @var ContainerBuilder */
     protected $configuration;
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->configuration);
     }

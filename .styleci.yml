@@ -1,15 +1,9 @@
+risky: false
 preset: symfony
-
-enabled:
-  - ordered_use
-  - strict
-  - strict_param
-  - short_array_syntax
-  - php_unit_construct
-  - phpdoc_order
 
 finder:
   exclude:
     - "config"
     - "templates"
     - "tests"
+  name: "*.php"

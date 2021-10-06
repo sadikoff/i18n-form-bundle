@@ -25,20 +25,18 @@
         }
     ],
     "require": {
-        "php": "^7.0.8",
-        "doctrine/doctrine-bundle": "^1.8",
+        "php": ">=7.2.5",
+        "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.3",
-        "symfony/config": "^3.4|^4.0",
-        "symfony/dependency-injection": "^3.4|^4.0",
-        "symfony/form": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0",
-        "symfony/twig-bundle": "^3.4|^4.0"
+        "symfony/framework-bundle": "^4.4|^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/twig-bundle": "^4.4|^5.0"
     },
     "require-dev": {
-        "symfony/validator": "^3.4|^4.0",
-        "symfony/phpunit-bridge": "^3.4|^4.0",
-        "symfony/yaml": "^3.4|^4.0",
-        "friendsofphp/php-cs-fixer": "^2.13"
+        "friendsofphp/php-cs-fixer": "^3.2",
+        "phpunit/phpunit": "^9.5",
+        "symfony/validator": "^4.4|^5.0",
+        "symfony/yaml": "^4.4|^5.0"
     },
     "suggest": {
         "knplabs/doctrine-behaviors": "For Knp strategy",
@@ -60,7 +58,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.x-dev"
+            "dev-master": "5.x-dev"
         }
     }
 }

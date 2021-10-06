@@ -1,0 +1,26 @@
+on:
+    pull_request:
+    push:
+        branches:
+            - "master"
+
+jobs:
+    build-and-test:
+        name: "Build & Test ${{ matrix.php-versions }}"
+        runs-on: 'ubuntu-latest'
+        strategy:
+            matrix:
+                php-versions: ["7.4", "8.0"]
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: :xdebug
+                  coverage: "none"
+                  tools: composer:v2
+
+            -   run: composer install --no-progress
+
+            -   run: vendor/bin/phpunit
