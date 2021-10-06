@@ -1,0 +1,20 @@
+build:
+    nodes:
+        my-tests:
+            environment:
+                php:
+                    version: 8.0
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    - phpcs-run
+
+filter:
+    paths: [ 'src/*' ]
+
+checks:
+    php: true
