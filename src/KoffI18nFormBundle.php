@@ -9,4 +9,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KoffI18nFormBundle extends Bundle
 {
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
 }
