@@ -4,6 +4,7 @@ namespace Koff\Bundle\I18nFormBundle\Tests\DependencyInjection;
 
 use Koff\Bundle\I18nFormBundle\DependencyInjection\KoffI18nFormExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 
@@ -22,15 +23,15 @@ class KoffI18nFormExtensionTest extends TestCase
         unset($this->configuration);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
     public function testUserLoadThrowsExceptionUnlessLocaleIsEmpty()
     {
+        $this->expectException(InvalidConfigurationException::class);
+
         $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $config['i18n_form']['locales'] = [];
         $loader->load($config, $this->getTestContainer());
+
     }
 
     public function testDefineLocaleProvider()
