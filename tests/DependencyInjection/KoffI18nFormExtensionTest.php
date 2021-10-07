@@ -2,13 +2,13 @@
 
 namespace Koff\Bundle\I18nFormBundle\Tests\DependencyInjection;
 
-use Koff\Bundle\I18nFormBundle\DependencyInjection\KoffI18NFormExtension;
+use Koff\Bundle\I18nFormBundle\DependencyInjection\KoffI18nFormExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 
 /**
- * Class I18nFormExtensionTest
+ * Class I18nFormExtensionTest.
  *
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
@@ -89,6 +89,7 @@ i18n_form:
     form_theme: 'bootstrap_4'
 EOF;
         $parser = new Parser();
+
         return $parser->parse($yaml);
     }
 
@@ -106,7 +107,7 @@ EOF;
         $container = new ContainerBuilder();
         $container->setParameter('kernel.default_locale', 'en');
         $container->setParameter('twig.form.resources', [
-            '@KoffI18nForm/bootstrap_4_form.html.twig'
+            '@KoffI18nForm/bootstrap_4_form.html.twig',
         ]);
 
         return $container;
