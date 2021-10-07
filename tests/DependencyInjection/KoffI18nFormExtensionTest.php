@@ -27,7 +27,7 @@ class KoffI18nFormExtensionTest extends TestCase
      */
     public function testUserLoadThrowsExceptionUnlessLocaleIsEmpty()
     {
-        $loader = new KoffI18NFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $config['i18n_form']['locales'] = [];
         $loader->load($config, $this->getTestContainer());
@@ -36,7 +36,7 @@ class KoffI18nFormExtensionTest extends TestCase
     public function testDefineLocaleProvider()
     {
         $configuration = $this->getTestContainer();
-        $loader = new KoffI18NFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -46,7 +46,7 @@ class KoffI18nFormExtensionTest extends TestCase
     public function testDefineFormManipulator()
     {
         $configuration = $this->getTestContainer();
-        $loader = new KoffI18NFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -56,7 +56,7 @@ class KoffI18nFormExtensionTest extends TestCase
     public function testDefaultConfgiLoad()
     {
         $configuration = $this->getTestContainer();
-        $loader = new KoffI18NFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -67,7 +67,7 @@ class KoffI18nFormExtensionTest extends TestCase
     public function testDefaultConfgiLoadWithTwigPredefined()
     {
         $configuration = $this->getTestContainerWithTwigResource();
-        $loader = new KoffI18NFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
