@@ -24,14 +24,8 @@ abstract class KoffI18nListener implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param FormEvent $event
-     */
     abstract public function preSetData(FormEvent $event);
 
-    /**
-     * @param FormEvent $event
-     */
     public function submit(FormEvent $event)
     {
         $data = $event->getData();

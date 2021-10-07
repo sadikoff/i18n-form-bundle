@@ -28,39 +28,23 @@ class TranslationsType extends AbstractType
     /** @var LocaleProviderInterface */
     private $localeProvider;
 
-    /**
-     * @param TranslationsListener    $translationsListener
-     * @param LocaleProviderInterface $localeProvider
-     */
     public function __construct(TranslationsListener $translationsListener, LocaleProviderInterface $localeProvider)
     {
         $this->translationsListener = $translationsListener;
         $this->localeProvider = $localeProvider;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber($this->translationsListener);
     }
 
-    /**
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['default_locale'] = $options['default_locale'];
         $view->vars['required_locales'] = $options['required_locales'];
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

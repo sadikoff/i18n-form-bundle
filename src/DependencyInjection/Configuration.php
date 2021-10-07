@@ -37,9 +37,6 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function localesSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode
@@ -53,9 +50,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function requiredLocalesSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode
@@ -67,9 +61,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function excludedFieldsSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode

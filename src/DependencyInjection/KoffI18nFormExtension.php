@@ -22,7 +22,7 @@ class KoffI18nFormExtension extends Extension
 
         $this->defineLocaleProvider($config, $container);
         $this->defineFormManipulator($config, $container);
-        if (array_key_exists('form_theme', $config)) {
+        if (\array_key_exists('form_theme', $config)) {
             $this->defineTemplate($config, $container);
         }
     }

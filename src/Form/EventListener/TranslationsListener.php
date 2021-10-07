@@ -18,17 +18,11 @@ class TranslationsListener extends KoffI18nListener
     /** @var FormManipulatorInterface */
     private $formManipulator;
 
-    /**
-     * @param FormManipulatorInterface $formManipulator
-     */
     public function __construct(FormManipulatorInterface $formManipulator)
     {
         $this->formManipulator = $formManipulator;
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function preSetData(FormEvent $event)
     {
         $form = $event->getForm();
@@ -50,11 +44,6 @@ class TranslationsListener extends KoffI18nListener
         }
     }
 
-    /**
-     * @param FormInterface $form
-     *
-     * @return string
-     */
     private function getTranslationClass(FormInterface $form): string
     {
         do {
@@ -74,19 +63,13 @@ class TranslationsListener extends KoffI18nListener
         return $translatableClass.'Translation';
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $formOptions
-     *
-     * @return array
-     */
     public function getFieldsOptions(FormInterface $form, array $formOptions): array
     {
         $fieldsOptions = array_fill_keys($formOptions['locales'], $this->formManipulator->getFieldsConfig($form));
 
         foreach ($fieldsOptions as $locale => &$field) {
             array_walk($field, function (&$v, $k, $l) {
-                if (array_key_exists('locale_options', $v) && array_key_exists($l, $v['locale_options'])) {
+                if (\array_key_exists('locale_options', $v) && \array_key_exists($l, $v['locale_options'])) {
                     $lo = $v['locale_options'];
                     unset($v['locale_options']);
 

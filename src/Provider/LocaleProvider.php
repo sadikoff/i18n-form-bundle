@@ -18,11 +18,6 @@ class LocaleProvider implements LocaleProviderInterface
     /** @var array */
     protected $requiredLocales;
 
-    /**
-     * @param array  $locales
-     * @param string $defaultLocale
-     * @param array  $requiredLocales
-     */
     public function __construct(array $locales, string $defaultLocale, array $requiredLocales = [])
     {
         if (empty($locales)) {

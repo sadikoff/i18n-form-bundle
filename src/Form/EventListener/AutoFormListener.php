@@ -12,9 +12,6 @@ class AutoFormListener implements EventSubscriberInterface
     /** @var FormManipulatorInterface */
     private $formManipulator;
 
-    /**
-     * @param FormManipulatorInterface $formManipulator
-     */
     public function __construct(FormManipulatorInterface $formManipulator)
     {
         $this->formManipulator = $formManipulator;
@@ -30,9 +27,6 @@ class AutoFormListener implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function preSetData(FormEvent $event)
     {
         $form = $event->getForm();

@@ -7,11 +7,7 @@ use Symfony\Component\Form\FormInterface;
 interface FormManipulatorInterface
 {
     /**
-     * @param FormInterface $form
-     *
      * @throws \RuntimeException
-     *
-     * @return array
      */
     public function getFieldsConfig(FormInterface $form): array;
 }

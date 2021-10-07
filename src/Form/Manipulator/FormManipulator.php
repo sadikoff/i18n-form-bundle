@@ -20,10 +20,6 @@ class FormManipulator implements FormManipulatorInterface
     /** @var array */
     private $globalExcludedFields;
 
-    /**
-     * @param FieldsExtractorInterface $fieldsExtractor
-     * @param array                    $globalExcludedFields
-     */
     public function __construct(FieldsExtractorInterface $fieldsExtractor, array $globalExcludedFields = [])
     {
         $this->fieldsExtractor = $fieldsExtractor;
@@ -71,15 +67,11 @@ class FormManipulator implements FormManipulatorInterface
     {
         $unknowsFields = array_keys(array_diff_key($formFields, $objectFields));
         if (!empty($unknowsFields)) {
-            throw new \RuntimeException(
-                sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class)
-            );
+            throw new \RuntimeException(sprintf("Field(s) '%s' doesn't exist in %s", implode(', ', $unknowsFields), $class));
         }
     }
 
     /**
-     * @param FormInterface $form
-     *
      * @return string
      */
     private function getDataClass(FormInterface $form)
@@ -101,12 +93,6 @@ class FormManipulator implements FormManipulatorInterface
         }
     }
 
-    /**
-     * @param array $objectFieldsConfig
-     * @param array $formExcludedFields
-     *
-     * @return array
-     */
     private function filterObjectFields(array $objectFieldsConfig, array $formExcludedFields): array
     {
         $excludedFields = array_fill_keys(array_merge($this->globalExcludedFields, $formExcludedFields), []);
@@ -119,7 +105,7 @@ class FormManipulator implements FormManipulatorInterface
         return array_filter(
             $fields,
             function ($v) {
-                return !(null === $v || (array_key_exists('display', $v) && !$v['display']));
+                return !(null === $v || (\array_key_exists('display', $v) && !$v['display']));
             }
         );
     }

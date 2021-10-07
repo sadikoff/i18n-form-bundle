@@ -21,9 +21,6 @@ use Symfony\Component\Form\FormEvent;
  */
 class TranslationsFormsListener extends KoffI18nListener
 {
-    /**
-     * @param FormEvent $event
-     */
     public function preSetData(FormEvent $event)
     {
         $form = $event->getForm();

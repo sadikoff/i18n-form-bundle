@@ -29,39 +29,23 @@ class TranslationsFormsType extends AbstractType
     /** @var LocaleProviderInterface */
     private $localeProvider;
 
-    /**
-     * @param TranslationsFormsListener $translationsListener
-     * @param LocaleProviderInterface   $localeProvider
-     */
     public function __construct(TranslationsFormsListener $translationsListener, LocaleProviderInterface $localeProvider)
     {
         $this->translationsListener = $translationsListener;
         $this->localeProvider = $localeProvider;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber($this->translationsListener);
     }
 
-    /**
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['default_locale'] = $options['default_locale'];
         $view->vars['required_locales'] = $options['required_locales'];
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -79,7 +63,7 @@ class TranslationsFormsType extends AbstractType
         $resolver->setNormalizer('form_options', function (Options $options, $value) {
             // Check mandatory data_class option when AutoFormType use
             if (is_a($options['form_type'], AutoFormType::class, true) && !isset($value['data_class'])) {
-                throw new \RuntimeException(sprintf('Missing "data_class" option under "form_options" of TranslationsFormsType. Required when "form_type" use "AutoFormType".'));
+                throw new \RuntimeException('Missing "data_class" option under "form_options" of TranslationsFormsType. Required when "form_type" use "AutoFormType".');
             }
 
             return $value;
