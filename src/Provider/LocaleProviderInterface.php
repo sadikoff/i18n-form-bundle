@@ -11,22 +11,16 @@ interface LocaleProviderInterface
 {
     /**
      * Get array of locales.
-     *
-     * @return array
      */
-    public function getLocales();
+    public function getLocales(): array;
 
     /**
      * Get default locale.
-     *
-     * @return string
      */
-    public function getDefaultLocale();
+    public function getDefaultLocale(): string;
 
     /**
      * Get required locales.
-     *
-     * @return array
      */
-    public function getRequiredLocales();
+    public function getRequiredLocales(): array;
 }

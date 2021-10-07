@@ -25,7 +25,7 @@ class LocaleProviderTest extends TestCase
     /** @var LocaleProvider */
     protected $provider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->locales = ['es', 'en', 'pt'];
         $this->defaultLocale = 'en';

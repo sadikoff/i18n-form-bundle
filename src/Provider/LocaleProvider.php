@@ -18,18 +18,13 @@ class LocaleProvider implements LocaleProviderInterface
     /** @var array */
     protected $requiredLocales;
 
-    /**
-     * @param array  $locales
-     * @param string $defaultLocale
-     * @param array  $requiredLocales
-     */
     public function __construct(array $locales, string $defaultLocale, array $requiredLocales = [])
     {
         if (empty($locales)) {
             throw new \InvalidArgumentException('No locales were configured, but expected at least one locale. Check `i18n_form.locales` bundle configuration!');
         }
 
-        if (!in_array($defaultLocale, $locales, true)) {
+        if (!\in_array($defaultLocale, $locales, true)) {
             throw new \InvalidArgumentException(sprintf('Default locale `%s` not found within the configured locales `[%s]`. Perhaps you need to add it to your `i18n_form.locales` bundle configuration?', $defaultLocale, implode(',', $locales)));
         }
 
@@ -45,7 +40,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocales()
+    public function getLocales(): array
     {
         return $this->locales;
     }
@@ -53,7 +48,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getDefaultLocale()
+    public function getDefaultLocale(): string
     {
         return $this->defaultLocale;
     }
@@ -61,7 +56,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequiredLocales()
+    public function getRequiredLocales(): array
     {
         return $this->requiredLocales;
     }

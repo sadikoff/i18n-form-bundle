@@ -17,9 +17,6 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
     /** @var EntityManagerInterface */
     private $entityManager;
 
-    /**
-     * @param EntityManagerInterface $entityManager
-     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -27,10 +24,8 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
 
     /**
      * @param string $class
-     *
-     * @return array
      */
-    public function getFieldsConfig($class)
+    public function getFieldsConfig($class): array
     {
         $fieldsConfig = [];
 
@@ -48,12 +43,9 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
     }
 
     /**
-     * @param ClassMetadata $metadata
-     * @param array         $assocNames
-     *
-     * @return array
+     * @param array $assocNames
      */
-    private function getAssocsConfig(ClassMetadata $metadata, $assocNames)
+    private function getAssocsConfig(ClassMetadata $metadata, $assocNames): array
     {
         $assocsConfigs = [];
 
@@ -68,20 +60,13 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
         return $assocsConfigs;
     }
 
-    /**
-     * @param string        $class
-     * @param ClassMetadata $metadata
-     * @param string        $assocName
-     *
-     * @return array
-     */
-    private function generateConfig($class, ClassMetadata $metadata, $assocName)
+    private function generateConfig(string $class, ClassMetadata $metadata, string $assocName): array
     {
         if ($metadata->isSingleValuedAssociation($assocName)) {
             return [
                 'field_type' => AutoFormType::class,
                 'data_class' => $class,
-                'required' => !(array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable']),
+                'required' => !(\array_key_exists('nullable', $metadata->discriminatorColumn) && $metadata->discriminatorColumn['nullable']),
             ];
         }
 
@@ -96,22 +81,13 @@ class DoctrineEntityFieldsExtractor implements FieldsExtractorInterface
         ];
     }
 
-    /**
-     * @param string $class
-     * @param string $fieldName
-     *
-     * @throws \Exception
-     *
-     * @return string
-     */
-    public function getAssociationTargetClass($class, $fieldName)
+    public function getAssociationTargetClass(string $class, string $fieldName): string
     {
         $metadata = $this->entityManager->getClassMetadata($class);
 
         if (!$metadata->hasAssociation($fieldName)) {
-            throw new \Exception(
-                sprintf('Unable to find the association target class of "%s" in %s.', $fieldName, $class)
-            );
+            //TODO: Create Customized Exception
+            throw new \Exception(sprintf('Unable to find the association target class of "%s" in %s.', $fieldName, $class));
         }
 
         return $metadata->getAssociationTargetClass($fieldName);

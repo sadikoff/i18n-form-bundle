@@ -2,41 +2,42 @@
 
 namespace Koff\Bundle\I18nFormBundle\Tests\DependencyInjection;
 
-use Koff\Bundle\I18nFormBundle\DependencyInjection\I18nFormExtension;
+use Koff\Bundle\I18nFormBundle\DependencyInjection\KoffI18nFormExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 
 /**
- * Class I18nFormExtensionTest
+ * Class I18nFormExtensionTest.
  *
  * @author Sadicov Vladimir <sadikoff@gmail.com>
  */
-class I18nFormExtensionTest extends TestCase
+class KoffI18nFormExtensionTest extends TestCase
 {
     /** @var ContainerBuilder */
     protected $configuration;
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->configuration);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
     public function testUserLoadThrowsExceptionUnlessLocaleIsEmpty()
     {
-        $loader = new I18nFormExtension();
+        $this->expectException(InvalidConfigurationException::class);
+
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $config['i18n_form']['locales'] = [];
         $loader->load($config, $this->getTestContainer());
+
     }
 
     public function testDefineLocaleProvider()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -46,7 +47,7 @@ class I18nFormExtensionTest extends TestCase
     public function testDefineFormManipulator()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
@@ -56,23 +57,23 @@ class I18nFormExtensionTest extends TestCase
     public function testDefaultConfgiLoad()
     {
         $configuration = $this->getTestContainer();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
         $registeredResources = $configuration->getParameter('twig.form.resources');
-        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+        $this->assertEquals(['@KoffI18nForm/bootstrap_4_form.html.twig'], $registeredResources);
     }
 
     public function testDefaultConfgiLoadWithTwigPredefined()
     {
         $configuration = $this->getTestContainerWithTwigResource();
-        $loader = new I18nFormExtension();
+        $loader = new KoffI18nFormExtension();
         $config = $this->getDefaultConfig();
         $loader->load($config, $configuration);
 
         $registeredResources = $configuration->getParameter('twig.form.resources');
-        $this->assertEquals(['@I18nForm/bootstrap_4_form.html.twig'], $registeredResources);
+        $this->assertEquals(['@KoffI18nForm/bootstrap_4_form.html.twig'], $registeredResources);
     }
 
     /**
@@ -89,6 +90,7 @@ i18n_form:
     form_theme: 'bootstrap_4'
 EOF;
         $parser = new Parser();
+
         return $parser->parse($yaml);
     }
 
@@ -106,7 +108,7 @@ EOF;
         $container = new ContainerBuilder();
         $container->setParameter('kernel.default_locale', 'en');
         $container->setParameter('twig.form.resources', [
-            '@I18nForm/bootstrap_4_form.html.twig'
+            '@KoffI18nForm/bootstrap_4_form.html.twig',
         ]);
 
         return $container;

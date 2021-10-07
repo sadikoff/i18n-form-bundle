@@ -2,10 +2,10 @@ koff/i18n-form-bundle
 =====================
 
 [![Build Status](https://travis-ci.org/sadikoff/i18n-form-bundle.svg?branch=master)](https://travis-ci.org/sadikoff/i18n-form-bundle)
-[![Latest Stable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/stable.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![Total Downloads](https://poser.pugx.org/koff/i18n-form-bundle/downloads.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![Latest Unstable Version](https://poser.pugx.org/koff/i18n-form-bundle/v/unstable.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle) 
-[![License](https://poser.pugx.org/koff/i18n-form-bundle/license.svg?format=flat-square)](https://packagist.org/packages/koff/i18n-form-bundle)
+[![Latest Stable Version](http://poser.pugx.org/koff/i18n-form-bundle/v)](https://packagist.org/packages/koff/i18n-form-bundle)
+[![Total Downloads](http://poser.pugx.org/koff/i18n-form-bundle/downloads)](https://packagist.org/packages/koff/i18n-form-bundle)
+[![Latest Unstable Version](http://poser.pugx.org/koff/i18n-form-bundle/v/unstable)](https://packagist.org/packages/koff/i18n-form-bundle)
+[![License](http://poser.pugx.org/koff/i18n-form-bundle/license)](https://packagist.org/packages/koff/i18n-form-bundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sadikoff/i18n-form-bundle/?branch=master)
 [![StyleCI](https://styleci.io/repos/114292466/shield?branch=master)](https://styleci.io/repos/114292466)
 [![Coverage Status](https://coveralls.io/repos/github/sadikoff/i18n-form-bundle/badge.svg?branch=master)](https://coveralls.io/github/sadikoff/i18n-form-bundle?branch=master)
@@ -85,7 +85,7 @@ Additional
 A different approach for entities which don't share fields untranslated. No strategy used here, only a locale field in your entity.
 
 ```php
-use Koff\I18nFormBundle\Form\Type\TranslationsFormsType;
+use Koff\Bundle\I18nFormBundle\Form\Type\TranslationsFormsType;
 //...
 $builder->add('translations', TranslationsFormsType::class, [
     'locales' => ['en', 'fr', 'es', 'de'],   // [1]
@@ -106,7 +106,7 @@ $builder->add('translations', TranslationsFormsType::class, [
 Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations
 
 ```php
-use Koff\I18nFormBundle\Form\Type\TranslatedEntityType;
+use Koff\Bundle\I18nFormBundle\Form\Type\TranslatedEntityType;
 //...
 $builder->add('medias', TranslatedEntityType::class, [
     'class' => 'App\Entity\Media',      // [1 - Mandatory]

@@ -10,23 +10,19 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * Class I18nFormExtension.
  */
-class I18nFormExtension extends Extension
+class KoffI18nFormExtension extends Extension
 {
-    /**
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(dirname(__DIR__).'/Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__).'/../config'));
         $loader->load('services.xml');
 
         $this->defineLocaleProvider($config, $container);
         $this->defineFormManipulator($config, $container);
-        if (array_key_exists('form_theme', $config)) {
+        if (\array_key_exists('form_theme', $config)) {
             $this->defineTemplate($config, $container);
         }
     }
@@ -53,12 +49,12 @@ class I18nFormExtension extends Extension
         array_walk(
             $twigFormResources,
             function ($value) use (&$isFormThemeRegistered) {
-                $isFormThemeRegistered = false !== stripos($value, '@I18nForm/');
+                $isFormThemeRegistered = false !== stripos($value, '@KoffI18nForm/');
             }
         );
 
         if (!$isFormThemeRegistered) {
-            $twigFormResources[] = '@I18nForm/'.$config['form_theme'].'_form.html.twig';
+            $twigFormResources[] = '@KoffI18nForm/'.$config['form_theme'].'_form.html.twig';
             $container->setParameter('twig.form.resources', $twigFormResources);
         }
     }

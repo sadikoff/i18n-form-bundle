@@ -13,15 +13,17 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    private $convertStringToArray = null;
+    private $convertStringToArray;
 
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('i18n_form');
+        $treeBuilder = new TreeBuilder('koff_i18n_form');
+        $rootNode = method_exists($treeBuilder, 'getRootNode')
+            ? $treeBuilder->getRootNode()
+            : $treeBuilder->root('koff_i18n_form');
 
         $this->convertStringToArray = function ($v) {
             return preg_split('/\s*[,|]\s*/', $v);
@@ -35,9 +37,6 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function localesSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode
@@ -51,9 +50,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function requiredLocalesSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode
@@ -65,9 +61,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     */
     private function excludedFieldsSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode

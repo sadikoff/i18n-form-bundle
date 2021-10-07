@@ -24,7 +24,7 @@ abstract class TypeTestCase extends BaseTypeTestCase
     /** @var \Koff\Bundle\I18nFormBundle\Form\Manipulator\FormManipulator */
     protected $defaultFormManipulator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
