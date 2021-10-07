@@ -1,9 +1,8 @@
 build:
+    environment:
+        php:
+            version: 8.0
     nodes:
-        my-tests:
-            environment:
-                php:
-                    version: 8.0
         analysis:
             project_setup:
                 override:
